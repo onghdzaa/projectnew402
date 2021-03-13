@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap'
 import * as jquery from 'jquery'
 import './assets/styles.css'
-
+import 'font-awesome/css/font-awesome.css'
 Vue.use(VeeValidate);
 
 Vue.config.productionTip = false

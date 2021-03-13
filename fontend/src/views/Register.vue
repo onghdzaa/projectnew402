@@ -62,6 +62,19 @@
                           <span>{{ errors.first('tel') }}</span>
                     </div>
                      <br>
+
+                     <div class="form-group">
+                        <label for="">อีเมล์</label>
+                        <input type="e email" 
+                         name="email"
+                         v-validate="'required'"
+                        v-model.trim = form.address 
+                        :class="{ 'is-invalid' : errors.has('email')}"  
+                        class="form-control">
+                        <span>{{ errors.first('email') }}</span>
+
+                    </div>
+                    <br>
                     <!-- ที่อยู่ -->
                     <div class="form-group">
                         <label for="">ที่อยู่</label>
@@ -139,6 +152,7 @@ export default {
                 password:"",
                 name:"",
                 tel:"",
+                email:"",
                 address:"",
                 model:"",
                 numcar:""

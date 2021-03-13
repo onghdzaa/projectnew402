@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta2",
     "core-js": "^2.6.5",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "vee-validate": "^2.2.15",
@@ -21,8 +22,8 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.1",
-    "@vue/cli-plugin-unit-mocha": "^4.5.11",
-    "@vue/cli-service": "^4.5.11",
+    "@vue/cli-plugin-unit-mocha": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
     "@vue/test-utils": "1.0.0-beta.29",
     "chai": "^4.1.2",
     "vue-template-compiler": "^2.6.10"
