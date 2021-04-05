@@ -1,0 +1,255 @@
+<template>
+  <Layout>
+    <div slot="buttons" class="form-group">
+      <router-link
+        class="btn"
+        style="
+          background-color: #17a2bb;
+          color: #fff;
+          margin-right: 10px;
+          width: 15%;
+          font-size: 17px;
+          border-radius: 4px;
+          margin-bottom: 15px;
+          min-width: 130px;
+        "
+        to="/customer/Booking"
+        >ย้อนกลับ</router-link
+      >
+      <!-- <router-link
+        class="btn"
+        style="
+          background-color: #17a2bb;
+          color: #fff;
+          margin-right: 10px;
+          width: 15%;
+          font-size: 17px;
+          border-radius: 4px;
+          margin-bottom: 15px;
+          min-width: 130px;
+        "
+        to="/admin/Edit_Booking"
+        >เพิ่ม/แก้ไขการจอง</router-link
+      > -->
+    </div>
+    <div class="card mb-3" style="border-right: solid 9px #17a2bb">
+      <div class="row">
+        <div class="col-sm-4">
+          <img
+            src="/img/employee.png"
+            alt="user"
+            class="img-booking"
+            style="max-width: 100%"
+          />
+        </div>
+        <div
+          class="col-sm-8"
+          style="
+            padding-left: 0% !important;
+            
+           
+          "
+        >
+          <div class="card-body" style="font-size: 22px; color: dimgray">
+            <br />
+            <div> จองคิวบริการล้างรถวันที่ : 29 / 03 / 64</div>
+            <div> เวลาให้บริการ : 08.00 - 09.00</div>
+            <hr>
+            <div>ชื่อ - นามสกุล : นาย สมสุข ใจดี</div>
+            <div>เบอร์โทรศัพท์ : 0908807104</div>
+            <div>รหัสพนักงาน : 00004</div>
+
+            <hr />
+            <form @submit.prevent="onsubmit()">
+            <div class="form-group" style="font-size: 21px">
+              <i class="fa fa-pencil-square"> </i>
+              กรอกข้อมูลเพื่อทำการจอง
+              <br />
+              <br />
+              <label for="">ทะเบียนรถ</label>
+              <input
+                type="text"
+                class="form-control"
+                style="font-size: 21px; margin-bottom: 15px;width:350px"
+                name="numcar"
+                             v-validate="{required: true}"
+                            v-model.trim = form.numcar 
+                            :class="{ 'is-invalid' : errors.has('numcar')}" 
+                       
+              />
+
+              <!-- <div class="form-group"  style="font-size: 21px;margin-bottom:15px">
+              <label for="">ยี่ห้อของรถ</label>
+              <input type="text" class="form-control"  style="font-size: 21px;margin-bottom:15px">
+            </div> -->
+            </div>
+            <div
+              class="form-group"
+              style="font-size: 21px; margin-bottom: 15px"
+            >
+              <label for="">ยี่ห้อของรถ</label>
+              <input  
+                type="text"
+                class="form-control"
+                style="font-size: 21px; margin-bottom: 15px;width:350px"
+                 name=" model"
+                             v-validate="{required: true}"
+                            v-model.trim = form.model 
+                            :class="{ 'is-invalid' : errors.has(' model')}" 
+                       
+              />
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="radio"
+                 v-validate="{required: true}"
+                            v-model.trim = form.radio
+                            :class="{ 'is-invalid' : errors.has(' radio')}" 
+                id="radio"
+                value="ล้างภายใน"
+                checked
+              />
+              <label class="form-check-label" >
+                ล้างภายใน
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+               name="radio"
+                 v-validate="{required: true}"
+                            v-model.trim = form.radio
+                            :class="{ 'is-invalid' : errors.has(' radio')}" 
+                id="radio"
+                value="ล้างภายนอก"
+                checked
+              />
+              <label class="form-check-label" for="fexampleRadios2">
+                ล้างภายนอก
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="radio"
+                 v-validate="{required: true}"
+                            v-model.trim = form.radio
+                            :class="{ 'is-invalid' : errors.has(' radio')}" 
+                id="radio"
+                value="ล้างภายใน+ภายนอก"
+                checked
+              />
+              <label class="form-check-label" >
+                ล้างภายใน+ภายนอก
+              </label>
+            </div>
+            <br>
+<!-- 
+            <input type="radio" id="one" value="One" v-model="picked">
+<label for="one">One</label>
+<br>
+<input type="radio" id="two" value="Two" v-model="picked">
+<label for="two">Two</label>
+<br>
+<span>Picked: {{ picked }}</span> -->
+
+            <div class="form-group">
+              <!-- @click="BookingConfirm()" -->
+                        <button type="submit" 
+                       
+                        class="btn btn-info" 
+                        style="background-color: #17A2BB; max-width:200px;font-size: 17px;
+                        color : #fff ;">ยืนยันการจอง
+                        </button>
+                    </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Layout>
+</template>
+
+<script>
+import Layout from "@/components/Layoutcustomer";
+import Pagination from "@/components/Pagination";
+// import Layout from '../../components/Layout.vue';
+export default {
+  components: { Layout, Pagination },
+  data() {
+    return {
+     
+      form:{
+                numcar:"",
+                model:"" ,
+                radio:""
+               
+                
+
+            }
+    };
+  },
+  methods: {
+//     BookingButton(form) {
+   
+//         this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> '),() =>{
+// console.log(form);
+//         }; 
+//     },
+     onsubmit(){  
+               this.$validator.validateAll().then(valid => {
+                //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
+                // console.log(this.form);
+                if(this.form.numcar=="" ||this.form.model=="")
+                return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
+                
+                 this.$router.push({ name: "BookingConfirm" });
+                console.log(this.form);
+           });
+           
+        },
+        BookingConfirm(){
+          this.$router.push({ name: "BookingConfirm" });
+        }
+    
+  },
+};
+</script>
+
+<style scope>
+/* .form-group .btn{
+    color: #fff !important;
+    margin-right: 10px;
+    width: 15%;
+    font-size: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color:#ced4da !important;
+    
+} */
+.btn.router-link-exact-active {
+  /* background-color:#ced4da !important ; */
+  border: 4px solid rgb(165, 163, 155);
+
+  /* #17a2bb */
+}
+.card-body .fa-list-alt {
+  padding-left: 5%;
+  margin-left: 0%;
+  text-align: left;
+}
+.img-booking {
+  max-width: 100%;
+  margin-left: 0%;
+}
+.card {
+  border-right: solid 5px #17a2bb;
+}
+</style>

@@ -1,9 +1,7 @@
 
 <template>
-  <div class="register container">
-      <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6">
+  <div class="register ">
+     
               <!-- รูปโลโก้ -->
               <img src="/img/logoo.png" alt="Logo" class="img-logo">
               <!-- การ์ดทั้งใบ -->
@@ -11,7 +9,8 @@
           <h1 class="card-header">
             REGISTER
           </h1>
-          <div class="card-body">
+          <div class="card-body" style=" margin-left: 15%;
+    margin-right: 15%;">
                 <form 
                 @submit.prevent="onsubmit()">
                     <!-- ชื่อผู้ใช้งาน -->
@@ -130,20 +129,18 @@
                         style="margin-top: -2%; margin-bottom: 4%">เข้าสู่ระบบ
                         </button>
                     </div>
-                  >
+                  
                    
                     
                 </form>
           </div>
-      </div>
-          </div>
-          <div class="col-md-3"></div>
+    
       </div>
   </div>
 </template>
 
 <script>
-
+//ขาด method เชื่อม backend !
 export default {
     data(){
         return {
@@ -176,12 +173,15 @@ export default {
 
 <style scope>
 
+.register{
+    max-width: 600px;
+    margin: 3% auto;
+}
 .img-logo {
     /* โลโก้ */
     width: 100%;
     display: block;
     margin: auto;
-    margin-top: 10%;
     margin-bottom: 10px;
 }
 h1{
@@ -201,9 +201,7 @@ h1{
     color: dimgray;
     font-size: 18px;
 }
-.card {
-    margin-bottom: 10%;
-}
+
 .btn{
     width: 100%;
     font-size: 16px;

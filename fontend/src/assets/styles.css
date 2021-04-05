@@ -17,3 +17,41 @@ body {
     background-color: #17A2BB;
     color: #EEEEEE;
 }
+.alertify .ajs-header {
+    color: #17A2BB !important;
+}
+.table th {
+    color: #525b62;
+    font-weight: 400;
+}
+.table td {
+    color: #525b62;
+    font-weight: 300;
+    font-size: 0.9 rem;
+    vertical-align: middle;
+}
+.pointer{
+    cursor: pointer !important;
+}
+.img-container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 123px;
+    height: 70px;
+    border: solid 1px #ced4da;
+}
+.img-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.page-link {
+    color: #17A2BB ;
+}
+.pagination li.active .page-link{
+    background-color: #17A2BB;
+    border: #17A2BB;
+}
+.page-link :hover{
+    color:#525b62 !important ;
+}

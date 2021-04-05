@@ -3,19 +3,14 @@
     <a class="navbar-brand" href="#">
       <img src="/img/logo_nav2.png" alt="" />
     </a>
-    <!-- <div class="text-logout">
-      <h3>ออกจากระบบ</h3>
-    </div> -->
-
-    <!-- <a class="btn-logout" href="">
-      <i class="fa fa-sign-out" aria-hidden="true"></i>
-    </a> -->
-    <div class="topnav-right">
-      <!-- <a href="#search"></a> -->
+ 
+<!-- 
+    <div class="topnav-right" style="max-width:300px; " >
+ 
       <a @click="onLogout()">ออกจากระบบ
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+          <i class="fa fa-sign-out"  aria-hidden="true" ></i>
       </a>
-    </div>
+    </div> -->
   </nav>
 </template>
 
@@ -23,8 +18,11 @@
 export default {
 name : "navbar",
 methods:{
+  //ขาด method เชื่อม backend !
     onLogout(){
+      this.$router.push({ name : "login"});
         console.log("Logout");
+        
     }
 }
 };
@@ -33,7 +31,7 @@ methods:{
 <style>
 .navbar {
   background-color: #fff;
-  height: 95px;
+  max-height: 95px;
   border-bottom: solid 1px #17a2bb;
   padding-right: 30px;
   padding-top: 0%;
@@ -75,5 +73,12 @@ methods:{
   text-decoration: none;
   font-size: 26px;
   cursor: pointer;
+}
+.topnav-right a {
+  color: #17a2bb !important;
+}
+.topnav-right i {
+  color: #17a2bb !important;
+  font-size: 30px;
 }
 </style>
