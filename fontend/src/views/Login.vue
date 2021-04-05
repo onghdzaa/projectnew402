@@ -39,9 +39,9 @@
                         <br>
                     </div>
                     
-                     <!--ปุ่มเข้าสู่ระบบ -->
+                     <!--ปุ่มเข้าสู่ระบบ --> 
                      <div class="form-group">
-                        <button type="submit" 
+                        <button type="submit" v-on:click="login"
                         class="btn btn-info" 
                         style="background-color: #17A2BB; 
                         color : #fff ">เข้าสู่ระบบ
@@ -70,16 +70,16 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
     data(){
         return {
             form:{
                 username:"",
                 password:"",
-                
-
-            }
+            },
+            users:[]
+            
         };
     },
     methods: {
@@ -89,10 +89,27 @@ export default {
            });
         },
         gotoRegister(){
-        this.$router.push({name :"register"})
+            this.$router.push({name :"register"})
+        },
+        login(){
+            console.log("s");
+            const parameters={"username":this.form.username,"password":this.form.password};
+            axios.post('http://localhost:5000/logins',parameters).then(res=>{
+                console.log(res.data.result);
+                console.log("ss");
+                this.users=res.data.results;
+                if(res.data.result==="successful"){
+                     console.log("ss");
+                   this.$router.push({name :"register"})
+                }
+                
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });
+        }
+        
     }
-    }
-    
 }
 </script>
 

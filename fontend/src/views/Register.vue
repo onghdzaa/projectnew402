@@ -68,7 +68,7 @@
                         <input type="e email" 
                          name="email"
                          v-validate="'required'"
-                        v-model.trim = form.address 
+                        v-model.trim = form.email 
                         :class="{ 'is-invalid' : errors.has('email')}"  
                         class="form-control">
                         <span>{{ errors.first('email') }}</span>
@@ -115,7 +115,7 @@
                     </div>
                      <!--ปุ่มลงทะเบียน -->
                      <div class="form-group">
-                        <button type="submit" 
+                        <button type="submit" v-on:click="onsubmit"
                         class="btn btn-info" 
                         style="background-color: #17A2BB; 
                         color : #fff ">ลงทะเบียน
@@ -143,7 +143,7 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
     data(){
         return {
@@ -162,9 +162,20 @@ export default {
     },
     methods: {
         onsubmit(){
-           this.$validator.validateAll().then(valid => {
-               console.log(this.form);
-           });
+        //    this.$validator.validateAll().then(valid => {
+        //        console.log(this.form);
+        //    });
+           console.log("ss");
+            const parameters={"username":this.form.username,"password":this.form.password,"name":this.form.name,
+            "tel":this.form.tel,"email":this.form.email,"address":this.form.address,"model":this.form.model,"numcar":this.form.numcar};
+            axios.post('http://localhost:5000/registers',parameters).then(res=>{
+              //  console.log(res.data.result);
+                console.log("ss");
+               // this.users=res.data.results;
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });
         },
         gotoLogin(){
         this.$router.push({name :"login"})
