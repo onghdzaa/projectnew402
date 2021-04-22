@@ -1,0 +1,22 @@
+{
+  "name": "fontend",
+  "version": "1.0.0",
+  "description": "## Project setup ``` npm install ```",
+  "main": "babel.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "alertifyjs": "^1.13.1",
+    "bootstrap-vue": "^2.21.2",
+    "fullcalendar": "^5.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"  
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -100,7 +100,7 @@
          
             <br><br>
              <div class="form-group">
-<button type="submit" @click="success()" class="btn btn-info btn-block" style=" width:40%;background-color: #17A2BB;color:#fff;">
+<button type="submit"  class="btn btn-info btn-block" style=" width:40%;background-color: #17A2BB;color:#fff;">
                  เสร็จสิ้น >
                 </button>
  </div>
@@ -151,10 +151,7 @@ components:{
                 console.log(this.form);
            });
            
-        }, success(){
-   alertify.alert('Alert Title', 'Alert Message!', function(){ alertify.success('Ok'); });
-
-      }
+        }, 
     }
 }
 </script>
