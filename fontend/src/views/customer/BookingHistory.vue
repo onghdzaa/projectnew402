@@ -51,6 +51,7 @@
           แสดงประวัติการจอง
         </header>
         <hr />
+        <div class="table-responsive">
         <table class="table" style="font-size: 16px;">
           <thead>
             <tr>
@@ -100,6 +101,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
         <!-- <Pagination/> -->
         <!-- <header>
           <i class="fa fa-list-alt"> </i>

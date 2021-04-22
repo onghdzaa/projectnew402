@@ -50,6 +50,7 @@
           แสดงราคาค่าบริการแต่ละประเภท
         </header>
         <hr />
+        <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
@@ -76,7 +77,7 @@
               
               <td class="text-right">
                 <i  
-                
+                 @click="gotoEdit()"
                   class="pointer fa fa-pencil-square"
                   style="padding-right: 19%; color: #17a2bb"
                 >
@@ -86,6 +87,7 @@
             </tr>
           </tbody>
         </table>
+         </div>
         <!-- <Pagination/> -->
         <!-- <header>
           <i class="fa fa-list-alt"> </i>
@@ -116,11 +118,13 @@ export default {
     methods:{
       onDelete(service){
 
-        this.alertify.confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?" ,() =>{
+         this.alertify.confirm('คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?').setHeader('<em> แจ้งเตือน ! </em> '),() =>{
 console.log(service);
-        })
+        }
         
-      }
+      },gotoEdit(){
+        this.$router.push({name :"admin-Edit_Price"})
+    }
     }
 };
 </script>

@@ -100,7 +100,7 @@
               class="btn btn-secondary" style="max-width: 260px !important;margin-bottom: 25px;"
               
             >
-            <!-- ขาดเลือกรูปแล้วขึ้นมาหน้า frontend -->
+            
               <i class="fa fa-upload" > </i> อัพโหลดรูปภาพ
               <input type="file" class="d-none" @change="onChangeFile($event.target)">
             </label>
@@ -115,7 +115,7 @@
                   บันทึก
                 </button>
               </div>
-             <div class="col-sm-6" style="max-width: 50% !important; margin: auto; ">
+             <div class="col-sm-6" >
                  <router-link to="/admin" class="btn btn-danger btn-block" style=" background-color: #ed2939;color:#fff;border-color: #ed2939;" >
                   ยกเลิก
                  </router-link>

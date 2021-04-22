@@ -9,8 +9,7 @@
           <h1 class="card-header">
             REGISTER
           </h1>
-          <div class="card-body" style=" margin-left: 15%;
-    margin-right: 15%;">
+          <div class="card-body" >
                 <form 
                 @submit.prevent="onsubmit()">
                     <!-- ชื่อผู้ใช้งาน -->
@@ -221,5 +220,31 @@ h1{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+@media screen and (max-width: 575.98px) {
+ 
+  .card .card-body{
+    /* ขอบซ้ายขวาของการ์ด */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.register {
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    margin-left: 15px;
+    margin-right: 15px;
+    /* max-width: 600px;
+    margin: 3% auto; */
+}
+.img-logo {
+    /* โลโก้ */
+    width: 100%;
+    margin-top: 0%;
+    /* display: block;
+    margin: auto;
+    
+    margin-bottom: 10px; */
+}
 
+  
+}
 </style>

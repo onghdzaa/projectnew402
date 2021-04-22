@@ -55,3 +55,9 @@ body {
 .page-link :hover{
     color:#525b62 !important ;
 }
+
+@media screen and (max-width: 575.98px){
+    .table-responsive .table th {
+        white-space: nowrap;
+    }
+}

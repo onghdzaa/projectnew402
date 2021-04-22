@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div slot="buttons" class="form-group">
+        <div slot="buttons" class="form-group">
       <router-link
         class="btn"
         style="
@@ -13,7 +13,7 @@
           margin-bottom: 15px;
           min-width: 130px;
         "
-        to="/customer/Profile"
+        to="/rider/ProfileRider"
         >ประวัติส่วนตัว</router-link
       >
       <router-link
@@ -28,14 +28,14 @@
           margin-bottom: 15px;
           min-width: 130px;
         "
-        to="/customer/Edit_Profile"
-        >แก้ไขประวัติ</router-link
+        to="/rider/EditProfileRider"
+        >แก้ไขข้อมูล</router-link
       >
     </div>
-    <div class="card mb-3" style=" border-right: solid 9px #17A2BB;">
+      <div class="card mb-3" style=" border-right: solid 9px #17A2BB;">
       <div class="row align align-items-center">
         <div class="col-sm-4 " >
-          <img src="/img/customer2.png"  alt="user" class="img-booking" style="max-width: 100%;">
+          <img src="/img/employee.png"  alt="user" class="img-booking" style="max-width: 100%;">
         </div>
         <div class="col-sm-8  " style="margin-left:-90px ;" >
           <div class="card-body" style="font-size: 19px;color:dimgray;">
@@ -63,76 +63,32 @@
         </div>
 
     </div>
-   
   </Layout>
 </template>
 
 <script>
-// import dialog from './dialog.vue'
-import Layout from "@/components/Layoutcustomer";
-import Pagination from "@/components/Pagination";
-// import Layout from '../../components/Layout.vue';
+import Layout from '@/components/Layoutrider'
 export default {
-  components: { Layout, Pagination },
+components:{
+    Layout
+},
   data() {
     return {
-    name :'นางสาว สุขศรี อิ่มบุญ',
+    name :'นาย เข้ม อุ่นใจ',
     tel :'0908807104',
-     username:'suksri_1',
-    email:'suksri@hotmail.com',
+     username:'kk_1',
+    email:'kk@hotmail.com',
    
-    address:'11/22 เชียงราก 1 หอพัก city จังหวัด ปทุมธานี',
-    model:'honda',
-    numcar:'กข123',
+    address:'53/92 ตลาด interzone จังหวัด กรุงเทพ',
+    model:'totota',
+    numcar:'รข3443',
 
 
     };
   },
-  methods: {
-     BookingButton(){
-        this.$router.push({name :"BookingButton"})
-    }, 
-    
-    
-  },
-};
+}
 </script>
 
-<style scope>
+<style>
 
-.btn.router-link-exact-active {
-  /* background-color:#ced4da !important ; */
-  border: 4px solid rgb(165, 163, 155);
-  
-  /* #17a2bb */
-}
-.card-body .fa-list-alt {
-  padding-left: 0%;
-  margin-left: 0%;
-  text-align: left;
-}
-.img-booking {
-  max-width: 100%;
-  margin-left: 0%;
-}
-.card{
-  border-right: solid 5px #17A2BB;
-}
-@media screen and (max-width: 575.98px) {
- /* .form-group .img-fluid{
-   /* max-width:300px;
-   max-height:360px; */
-   
-   /* margin-right: 15px;
- } * */
- /* .col-sm-6 .btn-danger {
-    margin-top: 10px
-
- } */
- .col-sm-8 .card-body{
-    margin-left: 95px;
- }
-
-  
-}
 </style>

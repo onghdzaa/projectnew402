@@ -13,6 +13,19 @@ import 'alertifyjs/build/css/alertify.css'
 import * as alertify from 'alertifyjs'
 import 'alertifyjs/build/css/themes/default.css'
 import 'fullcalendar'
+
+
+// import Vue from 'vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 Vue.use(VeeValidate);
 
 Vue.prototype.alertify = alertify;

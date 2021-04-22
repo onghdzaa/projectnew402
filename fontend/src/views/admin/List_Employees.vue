@@ -50,6 +50,7 @@
           แสดงจำนวนข้อมูลของพนักงาน
         </header>
         <hr />
+        <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
@@ -73,7 +74,7 @@
                    
               
               <td class="text-right">
-                <i
+                <i @click="gotoEdit()"
                   class="pointer fa fa-pencil-square"
                   style="padding-right: 19%; color: #17a2bb"
                 >
@@ -83,6 +84,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
         <!-- <Pagination/> -->
         <!-- <header>
           <i class="fa fa-list-alt"> </i>
@@ -111,11 +113,13 @@ export default {
     },
     methods:{
       onDelete(employees){
-    this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> '),() =>{
+    this.alertify.confirm('คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?').setHeader('<em> แจ้งเตือน ! </em> '),() =>{
 console.log(employees);
         }; 
 
-      }
+      },gotoEdit(){
+        this.$router.push({name :"admin-Edit_Employees"})
+    }
     }
 };
 </script>

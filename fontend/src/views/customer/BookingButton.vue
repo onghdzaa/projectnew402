@@ -45,7 +45,7 @@
         <div
           class="col-sm-8"
           style="
-            padding-left: 0% !important;
+            padding-left: 0% !important;margin-left: -90px;
             
            
           "
@@ -70,7 +70,7 @@
               <input
                 type="text"
                 class="form-control"
-                style="font-size: 21px; margin-bottom: 15px;width:350px"
+                style="font-size: 21px; margin-bottom: 15px;"
                 name="numcar"
                              v-validate="{required: true}"
                             v-model.trim = form.numcar 
@@ -91,7 +91,7 @@
               <input  
                 type="text"
                 class="form-control"
-                style="font-size: 21px; margin-bottom: 15px;width:350px"
+                style="font-size: 21px; margin-bottom: 15px;"
                  name=" model"
                              v-validate="{required: true}"
                             v-model.trim = form.model 
@@ -151,6 +151,8 @@
               </label>
             </div>
             <br>
+            
+
 <!-- 
             <input type="radio" id="one" value="One" v-model="picked">
 <label for="one">One</label>
@@ -159,6 +161,7 @@
 <label for="two">Two</label>
 <br>
 <span>Picked: {{ picked }}</span> -->
+<!-- <h1>map</h1> -->
 
             <div class="form-group">
               <!-- @click="BookingConfirm()" -->
@@ -207,7 +210,7 @@ export default {
                this.$validator.validateAll().then(valid => {
                 //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
                 // console.log(this.form);
-                if(this.form.numcar=="" ||this.form.model=="")
+                if(this.form.numcar=="" ||this.form.model==""||this.form.radio=="")
                 return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
                 
                  this.$router.push({ name: "BookingConfirm" });

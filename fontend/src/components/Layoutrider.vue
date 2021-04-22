@@ -18,7 +18,7 @@
 
 <script>
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/SidebarNavcustomer";
+import Sidebar from "../components/SidebarNavrider";
 
 export default {
     components:{

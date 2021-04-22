@@ -68,7 +68,8 @@
             แสดงข้อมูลลูกค้า
         </header>
         <hr />
-        <table class="table">
+        <div class="table-responsive">
+        <table class="table" style="font-size: 17px;">
           <thead>
             <tr>
               
@@ -76,6 +77,8 @@
               <th>ชื่อ-นามสกุล</th>
               <th>ที่อยู่</th>
               <th>เบอร์โทรศัพท์</th>
+               <th>ยี่ห้อรถ</th>
+                <th>ทะเบียนรถ</th>
               <th>อีเมลล์</th>
                <!-- <th>ยี่ห้อของรถ</th>
                <th>ทะเบียนรถ</th> -->
@@ -89,6 +92,8 @@
               <td>{{user.Name}} </td>
                     <td>{{user.address}}</td>
                     <td>{{user.tel}}</td>
+                     <td>{{user.model}}</td>
+                      <td>{{user.numcar}}</td>
                     <td>{{user.email}}</td>
                     <!-- <td>{{user.model}}</td>
                     <td>{{user.numcar}}</td> -->
@@ -103,7 +108,7 @@
              
           </tbody>
         </table>
-        
+        </div>
         
         <!-- <Pagination/> -->
         <!-- <header>
@@ -124,9 +129,9 @@ export default {
    data() {
         return {
             users: [
-                { no: '1', Name: 'Frank Murphy', address: '153/41 หอพัก a3 จ.กรุงเทพ' ,tel:'0615103308',email:'kny@gmail.com'},
-                { no: '2',Name: 'Vic Reynolds', address: '83/2 หอพัก c3 จ.ปทุมธานี' ,tel:'0908807104',email:'stp@gmail.com' },
-                { no: '3',Name: 'Gina Jabowski', address: '153/41 หอพัก a3 จ.สุพรรณบุรี' ,tel:'0616482107',email:'spc@gmail.com' },
+                { no: '1', Name: 'Frank Murphy', address: '153/41 หอพัก a3 จ.กรุงเทพ' ,tel:'0615103308',model:'toyota',numcar:'ฟพ345', email:'kny@gmail.com'},
+                { no: '2',Name: 'Vic Reynolds', address: '83/2 หอพัก c3 จ.ปทุมธานี' ,tel:'0908807104',model:'toyota',numcar:'ฟพ345',email:'stp@gmail.com' },
+                { no: '3',Name: 'Gina Jabowski', address: '153/41 หอพัก a3 จ.สุพรรณบุรี' ,tel:'0616482107', model:'toyota',numcar:'ฟพ345' ,email:'spc@gmail.com' },
                 // { Name: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com', role: 'User' },
                 // { Name: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com', role: 'User' }
             ]

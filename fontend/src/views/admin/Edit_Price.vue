@@ -115,7 +115,7 @@
                   บันทึก
                 </button>
               </div>
-              <div class="col-sm-6" style="max-width: 50% !important; margin: auto; ">
+              <div class="col-sm-6">
                  <router-link to="/admin/List_Price" class="btn btn-danger btn-block" style=" background-color: #ed2939;color:#fff;border-color: #ed2939;" >
                   ยกเลิก
                  </router-link>

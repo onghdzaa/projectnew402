@@ -82,6 +82,7 @@
           แสดงข้อมูลรายรับประจำวัน
         </header>
         <hr />
+        <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
@@ -117,6 +118,7 @@
              
           </tbody>
         </table>
+        </div>
         <div class="total" style="text:r">
             <h4 > รวมยอดเงิน : 700 บาท </h4>
         </div>

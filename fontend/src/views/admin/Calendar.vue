@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <!--  -->
+  
      <div slot="buttons" class="form-group">
       <router-link
         class="btn"
@@ -16,6 +16,22 @@
         "
         to="/admin/Calendar"
         >ตารางงานพนักงาน</router-link
+      >
+      <!-- ปุ่มรีเซ็ทข้อมูล -->
+      <router-link
+        class="btn"
+        style="
+          background-color: #17a2bb;
+          color: #fff;
+          margin-right: 10px;
+          width: 15%;
+          font-size: 17px;
+          border-radius: 4px;
+          margin-bottom: 15px;
+          min-width: 130px;
+        "
+        to="/admin/Calendar"
+        >รีเซ็ตข้อมูล</router-link
       >
       
     </div>
@@ -40,8 +56,8 @@
                     
         </header>
         <hr />
-        
-   <table class="table" style="font-size: 16px;">
+        <div class="table-responsive">
+   <table class="table" style="font-size: 17px;">
           <thead>
             <tr>
               <th>รูป</th>
@@ -72,8 +88,8 @@
                      <td>{{employee.id}}</td>
                    <td> <div class="text-right">
                      
-                     <label class="badge badge-warning">
-                        <i class="fa fa-hourglass" style="color:black"></i> รอดำเนินการ
+                     <label class="badge badge-warning" style="background-color:#FFCC33;">
+                        <i class="fa fa-hourglass" style="color:black"></i> ดำเนินการ
                      </label>
                      <!-- เชื่อมกับสถานะเพื่อเปลี่ยนไอคอน -->
                        <!-- <label class="badge badge-success" v-if="item.bk_status == 'allowed'">
@@ -90,7 +106,7 @@
             </tr>
           </tbody>
         </table>
-        
+         </div>
  
       </div>
     </div>

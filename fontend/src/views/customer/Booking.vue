@@ -37,11 +37,14 @@
         <div class="col-sm-4 ">
           <img src="/img/employee.png"  alt="user" class="img-booking" style="max-width: 100%;">
         </div>
-        <div class="col-sm-8  "  style=" padding-left:0% !important; padding-right:0%;margin-left: -15px;">
+        <div class="col-sm-8  "  style=" padding-left:0% !important; padding-right:0%;margin-left: -90px;">
           <div class="card-body" style="font-size: 19px;color:dimgray;">
             <div>ชื่อ - นามสกุล : นาย สมสุข ใจดี</div>
             <div>เบอร์โทรศัพท์ : 0908807104</div>
             <div>รหัสพนักงาน  : 00004</div>
+            <!-- เพิ่ม ช่องใส่คะแนนแต่ละคน -->
+            <div>คะแนน : 4.8 / 5 <i class="fa fa-star-half-o" aria-hidden="true"></i></div> 
+            
             <hr>
             <div>เลือกช่วงเวลาที่ต้องการจอง</div>
              <div class="row"  >
@@ -136,17 +139,7 @@ export default {
         this.$router.push({name :"BookingButton"})
     }, 
     
-    // onDelete(users) {
-    //   this.alertify
-    //     .confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?")
-    //     .setHeader("<em> แจ้งเตือน ! </em> "),
-    //     () => {
-    //       console.log(users);
-    //     };
-    //   //         this.alertify.confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?" ,() =>{
-    //   // console.log(users);
-    //   //         })
-    // },
+  
   },
 };
 </script>
@@ -179,6 +172,23 @@ export default {
 }
 .card{
   border-right: solid 5px #17A2BB;
+}
+@media screen and (max-width: 575.98px) {
+ /* .form-group .img-fluid{
+   /* max-width:300px;
+   max-height:360px; */
+   
+   /* margin-right: 15px;
+ } * */
+ /* .col-sm-6 .btn-danger {
+    margin-top: 10px
+
+ } */
+ .card .row  .col-sm-8 .card-body{
+    margin-left: 130px;
+ }
+
+  
 }
 
 </style>

@@ -60,7 +60,11 @@
             <div>รหัสพนักงาน : 00004</div>
 
             <hr />
-            
+            <br>
+            <div>
+    <b-form-rating v-model="value"></b-form-rating>
+    <p class="mt-2">Value: {{ value }}</p>
+  </div>
           </div>
           
         </div>
@@ -76,12 +80,10 @@ import Pagination from "@/components/Pagination";
 export default {
   components: { Layout, Pagination },
   data() {
-    return {
-      users: [
-       
-      ],
-    };
-  },
+      return {
+        value: null
+      }
+    },
   methods: {
     BookingButton() {
       this.$router.push({ name: "BookingButton" });
