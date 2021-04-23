@@ -175,12 +175,13 @@
 
 <script>
 import Layout from "@/components/Layoutcustomer";
+import axios from 'axios';
 // import Layout from '../../components/Layout.vue';
 export default {
   data(){
         return {
             form:{
-                name:"",
+                name:"หกหกหก",
                 tel:"",
                 email:"",
                 address:"",
@@ -193,13 +194,44 @@ export default {
         };
     },
   components: { Layout },
+   created(){
+     
+      axios.post('http://localhost:5000/profile',{fullname:this.$session.get('user')}).then(res=>{
+        console.log(this.$session.get('user'))
+        this.form.name=res.data[0].name;
+        this.form.tel=res.data[0].tel;
+        this.form.email=res.data[0].email;
+        this.form.address=res.data[0].address;
+        this.form.model=res.data[0].numcar;
+        this.form.numcar=res.data[0].numcar;
+        this.form.username=res.data[0].user_id;
+
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });
+   },
   methods:{
     onsubmit(){
       this.$validator.validateAll().then(valid => {
                console.log(this.form);
                if(this.form.img=="")
-                return this.alertify.warning('กรุณาอัพโหลดรูปภาพ !!');
+                {return this.alertify.warning('กรุณาอัพโหลดรูปภาพ !!');}
                 //axios ส่งข้อมูลไปยังแบคเอน
+                axios.put('http://localhost:5000/editprofile',{fullname:this.$session.get('user')}).then(res=>{
+        // console.log(this.$session.get('user'))
+        // this.form.name=res.data[0].name;
+        // this.form.tel=res.data[0].tel;
+        // this.form.email=res.data[0].email;
+        // this.form.address=res.data[0].address;
+        // this.form.model=res.data[0].numcar;
+        // this.form.numcar=res.data[0].numcar;
+        // this.form.username=res.data[0].user_id;
+
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });
            });
      
     },

@@ -32,16 +32,16 @@
         >ประวัติการจอง</router-link
       > -->
     </div>
-    <div class="card mb-3" style=" border-right: solid 9px #17A2BB;">
+    <div class="card mb-3" v-for="sv in staff" :key="sv.ID_Staff" style=" border-right: solid 9px #17A2BB;">
       <div class="row align align-items-center">
         <div class="col-sm-4 ">
           <img src="/img/employee.png"  alt="user" class="img-booking" style="max-width: 100%;">
         </div>
         <div class="col-sm-8  "  style=" padding-left:0% !important; padding-right:0%;margin-left: -90px;">
           <div class="card-body" style="font-size: 19px;color:dimgray;">
-            <div>ชื่อ - นามสกุล : นาย สมสุข ใจดี</div>
-            <div>เบอร์โทรศัพท์ : 0908807104</div>
-            <div>รหัสพนักงาน  : 00004</div>
+            <div>ชื่อ - นามสกุล : {{sv.Full_Name}}</div>
+            <div>เบอร์โทรศัพท์ : {{sv.Tell_Staff}}</div>
+            <div>รหัสพนักงาน  : {{sv.ID_Staff}}</div>
             <!-- เพิ่ม ช่องใส่คะแนนแต่ละคน -->
             <div>คะแนน : 4.8 / 5 <i class="fa fa-star-half-o" aria-hidden="true"></i></div> 
             
@@ -49,47 +49,47 @@
             <div>เลือกช่วงเวลาที่ต้องการจอง</div>
              <div class="row"  >
               <div class="col-6 col-sm-4 "   >
-                <button type="button"  @click="BookingButton()"  class="btn btn-info btn-block" style="margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                <button type="button"  @click="BookingButton(sv.ID_Staff,sv.Tell_Staff,sv.Full_Name,'08.00-09.00')"  class="btn btn-info btn-block" style="margin-top: 10px;  background-color: #17A2BB;color:#fff;">
                   08.00-09.00
                 </button>
               </div>
               <div class="col-6 col-sm-4 "  >
-                <button type="submit" @click="BookingButton()" class="btn btn-info btn-block" style="margin-top: 10px;   background-color: #17A2BB;color:#fff;">
+                <button type="submit" @click="BookingButton(sv.ID_Staff,sv.Tell_Staff,sv.Full_Name,'09.00-10.00')" class="btn btn-info btn-block" style="margin-top: 10px;   background-color: #17A2BB;color:#fff;">
                   09.00-10.00
                 </button>
               </div>
               <div class="col-6 col-sm-4 "  >
-                <button type="submit" @click="BookingButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                <button type="submit" @click="BookingButton(sv.ID_Staff,sv.Tell_Staff,sv.Full_Name,'10.00-11.00')" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
                   10.00-11.00
                 </button>
               </div>
               <div class="col-6 col-sm-4 "  >
-                <button type="submit"  @click="BookingButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                <button type="submit"  @click="BookingButton(sv.ID_Staff,sv.Tell_Staff,sv.Full_Name,'11.00-12.00')" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
                   11.00 -12.00
                 </button>
               </div>
               <div class="col-6 col-sm-4 "  >
-                <button type="submit" @click="BookingButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                <button type="submit" @click="BookingButton(sv.ID_Staff,sv.Tell_Staff,sv.Full_Name,'12.00-13.00')" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
                   12.00-13.00
                 </button>
               </div>
               <div class="col-6 col-sm-4 "  >
-                <button type="submit" @click="BookingButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                <button type="submit" @click="BookingButton(sv.ID_Staff,sv.Tell_Staff,sv.Full_Name,'13.00-14.00')" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
                   13.00-14.00
                 </button>
               </div>
               <div class="col-6 col-sm-4 "  >
-                <button type="submit" @click="BookingButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                <button type="submit" @click="BookingButton(sv.ID_Staff,sv.Tell_Staff,sv.Full_Name,'14.00-15.00')" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
                  14.00-15.00
                 </button>
               </div>
               <div class="col-6 col-sm-4 "  >
-                <button type="submit" @click="BookingButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                <button type="submit" @click="BookingButton(sv.ID_Staff,sv.Tell_Staff,sv.Full_Name,'15.00-16.00')" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
                   15.00-16.00
                 </button>
               </div>
               <div class="col-6 col-sm-4 "  >
-                <button type="submit" @click="BookingButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                <button type="submit" @click="BookingButton(sv.ID_Staff,sv.Tell_Staff,sv.Full_Name,'16.00-27.00')" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;" :disabled="sv.time9==1">
                   16.00-17.00
                 </button>
               </div>
@@ -116,9 +116,21 @@
 // import dialog from './dialog.vue'
 import Layout from "@/components/Layoutcustomer";
 import Pagination from "@/components/Pagination";
+import {mapState} from "vuex";
 // import Layout from '../../components/Layout.vue';
 export default {
   components: { Layout, Pagination },
+  computed:{
+    ...mapState(["staff"])
+  },
+   created(){
+     //console.log(today);
+     //sent to data base
+     // array today staff
+     this.$store.dispatch("set_staff");
+    //  console.log(this.$session.get('full_name'));
+    //  console.log(this.$session.get('session-id'));
+   },
   data() {
     return {
       users: [
@@ -135,8 +147,10 @@ export default {
     };
   },
   methods: {
-     BookingButton(){
-        this.$router.push({name :"BookingButton"})
+     BookingButton(staffid,tel,name,booktime){
+        this.$router.push({name :"BookingButton", params: { staff: staffid , tel: tel ,name: name,time: booktime} })
+    },provide(){
+return{text: this.form.name}
     }, 
     
   

@@ -48,7 +48,7 @@ export default new Router({
      {path:'/customer/Booking', name:'customer-booking',component:Booking},
      {path:'/admin/Calendar', name:'admin-Calendar',component:Calendar}
      ,
-     {path:'/customer/BookingButton', name:'BookingButton',component:BookingButton}
+     {path:'/customer/BookingButton', name:'BookingButton',component:BookingButton,props: true}
      ,
      {path:'/customer/BookingConfirm', name:'BookingConfirm',component:BookingConfirm},
      {path:'/customer/BookingHistory', name:'BookingHistory',component:BookingHistory}

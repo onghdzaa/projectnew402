@@ -69,18 +69,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="employee in employees" :key="employee.id">
+            <tr v-for="sv in bookinghistory" :key="sv.id">
               <td>
                 <div class="img-container">
                   <img src="/img/imguser.jpg" alt="employee" />
                 </div>
               </td>
-               <td>{{employee.time}}</td>
-              <td>{{employee.name}} </td>
-                    <td>{{employee.tel}}</td>
-                     <td>{{employee.numcar}}</td>
-                       <td>{{employee.address}}</td>
-                     <td>{{employee.id}}</td>
+               <td>{{sv.time}}</td>
+              <td>{{sv.name_member}} </td>
+                    <td>{{sv.tel_member}}</td>
+                     <td>{{sv.numcar}}</td>
+                       <td>{{sv.address}}</td>
+                     <td>{{sv.id}}</td>
                    <td> <div class="text-right">
                      
                      <label class="badge badge-success">
@@ -116,11 +116,16 @@
 
 <script>
 import Layout from "@/components/Layoutcustomer";
+import axios from "axios";
+import {mapState} from "vuex";
 export default {
 components:{
    
 Layout
 },
+computed:{
+    ...mapState(["bookinghistory"])
+  },
  data() {
         return {
             employees: [
@@ -130,6 +135,22 @@ Layout
                 
             ]
         };
+    },
+      created(){
+    axios
+            .get("http://localhost:5000/bookinghistory",{
+                    params: {
+                        id: this.$session.get("user")}
+                    })
+            .then((res) => {
+              
+            //console.log(res)
+            })
+            .catch((error) => {
+              
+              console.error(error);
+            });
+            this.$store.dispatch("set_bookinghistory");
     },
 
 }

@@ -74,15 +74,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="employee in employees" :key="employee.id">
+            <tr v-for="employee in calender" :key="employee.id">
               <td>
                 <div class="img-container">
                   <img src="/img/imguser.jpg" alt="employee" />
                 </div>
               </td>
                <td>{{employee.time}}</td>
-              <td>{{employee.name}} </td>
-                    <td>{{employee.tel}}</td>
+              <td>{{employee.name_member}} </td>
+                    <td>{{employee.tel_member}}</td>
                      <td>{{employee.numcar}}</td>
                        <td>{{employee.address}}</td>
                      <td>{{employee.id}}</td>
@@ -115,8 +115,15 @@
 
 <script>
 import Layout from "@/components/Layout";
+import {mapState} from "vuex";
 export default {
 components: { Layout },
+computed:{
+    ...mapState(["calender"])
+  },
+  created(){
+this.$store.dispatch("set_calender");
+  },
 
   methods: {
    

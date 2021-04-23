@@ -62,15 +62,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="employee in employees" :key="employee.id">
+            <tr v-for="sv in staff" :key="sv.ID_Staff">
               <td>
                 <div class="img-container">
                   <img src="/img/imguser.jpg" alt="employee" />
                 </div>
               </td>
-               <td>{{employee.id}}</td>
-              <td>{{employee.name}} </td>
-                    <td>{{employee.tel}}</td>
+               <td>{{sv.ID_Staff}}</td>
+              <td>{{sv.Full_Name}} </td>
+                    <td>{{sv.Tell_Staff}}</td>
                    
               
               <td class="text-right">
@@ -99,8 +99,15 @@
 import Layout from "@/components/Layout";
 import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
+import {mapState} from "vuex";
 export default {
   components: { Layout,Pagination },
+  computed:{
+    ...mapState(["staff"])
+  },
+   created(){
+this.$store.dispatch("set_staff");
+  },
    data() {
         return {
             employees: [

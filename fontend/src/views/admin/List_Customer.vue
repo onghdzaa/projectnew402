@@ -86,10 +86,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in users" :key="user.id">
+            <tr v-for="user in listcustomer" :key="user.numid">
               
                <td>{{user.no}}</td>
-              <td>{{user.Name}} </td>
+              <td>{{user.name}} </td>
                     <td>{{user.address}}</td>
                     <td>{{user.tel}}</td>
                      <td>{{user.model}}</td>
@@ -124,8 +124,16 @@
 import Layout from "@/components/Layout";
 import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
+import {mapState} from "vuex";
 export default {
   components: { Layout,Pagination },
+  computed:{
+    ...mapState(["listcustomer"])
+  },
+  created(){
+  
+    this.$store.dispatch("set_customer");
+  },
    data() {
         return {
             users: [

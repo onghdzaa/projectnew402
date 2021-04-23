@@ -63,16 +63,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="sv in service" :key="sv.service">
+            <tr v-for="sv in listprice" :key="sv.type">
               <td>
                 <div class="img-container">
                   <img src="/img/ล้างรถภายใน.png" alt="sv" />
                 </div>
               </td>
                
-              <td>{{sv.services}} </td>
+              <td>{{sv.type}} </td>
                     <td>{{sv.price}}</td>
-                    <td>{{sv.waytobuy}}</td>
+                    <td>{{sv.process}}</td>
                    
               
               <td class="text-right">
@@ -102,8 +102,15 @@
 import Layout from "@/components/Layout";
 import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
+import {mapState} from "vuex";
 export default {
   components: { Layout,Pagination },
+   computed:{
+    ...mapState(["listprice"])
+  },
+  created(){
+this.$store.dispatch("set_listprice");
+  },
    data() {
         return {
             service: [

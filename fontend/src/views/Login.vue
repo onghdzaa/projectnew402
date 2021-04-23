@@ -80,28 +80,58 @@ export default {
     methods: {
         onsubmit(){
            this.$validator.validateAll().then(valid => {
-               console.log(this.form);
-           });
-        },
-        gotoRegister(){
-            this.$router.push({name :"register"})
-        },
-        login(){
-            console.log("s");
+               console.log("s");
             const parameters={"username":this.form.username,"password":this.form.password};
             axios.post('http://localhost:5000/logins',parameters).then(res=>{
-                console.log(res.data.result);
-                console.log("ss");
+                //console.log(res.data.result);
+                console.log("ss*");
+                console.log(res.data.result)
                 this.users=res.data.results;
-                if(res.data.result==="successful"){
-                     console.log("ss");
-                   this.$router.push({name :"register"})
+                if(res.data.result==="successful"&&res.data.type!=1&&res.data.type!=2){
+                    this.$router.push({name :"customer-booking"});
+                    console.log(parameters+"sdsddsdsasda");
+                      axios.post('http://localhost:5000/logindata',parameters).then(res=>{
+                     console.log(res.data[0].name);
+                     const parameters={"username":this.form.username,"password":this.form.password}
+              this.$session.start();
+            this.$session.set('user',res.data[0].numid);
+          // this.$session.set('numcar',res.data[0].numcar);
+
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });
+            
+                }else if(res.data.result==="successful"&&res.data.type!=2){
+            this.$router.push({name :"equipment-list"});
                 }
                 
             })
             .catch(error =>{ 
                 console.error(error);
             });
+               //console.log(this.form);
+           });
+        },
+        gotoRegister(){
+            this.$router.push({name :"register"})
+        },
+        login(){
+            // console.log("s");
+            // const parameters={"username":this.form.username,"password":this.form.password};
+            // axios.post('http://localhost:5000/logins',parameters).then(res=>{
+            //     console.log(res.data.result);
+            //     console.log("ss");
+            //     this.users=res.data.results;
+            //     if(res.data.result==="successful"){
+            //          console.log("ss");
+            //        this.$router.push({name :"register"})
+            //     }
+                
+            // })
+            // .catch(error =>{ 
+            //     console.error(error);
+            // });
         }
         
     }
