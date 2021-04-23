@@ -69,6 +69,7 @@
 
 <script>
 // import dialog from './dialog.vue'
+import axios from 'axios';
 import Layout from "@/components/Layoutcustomer";
 import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
@@ -88,6 +89,23 @@ export default {
 
     };
   },
+  created(){
+     
+      axios.post('http://localhost:5000/profile',{fullname:this.$session.get('user')}).then(res=>{
+        console.log(this.$session.get('user'))
+        this.name=res.data[0].name;
+        this.tel=res.data[0].tel;
+        this.email=res.data[0].email;
+        this.address=res.data[0].address;
+        this.model=res.data[0].numcar;
+        this.numcar=res.data[0].numcar;
+        this.username=res.data[0].user_id;
+
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });
+   },
   methods: {
      BookingButton(){
         this.$router.push({name :"BookingButton"})
