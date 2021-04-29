@@ -130,14 +130,16 @@
 
 <script>
 import Layout from "@/components/Layout";
+import axios from "axios";
 // import Layout from '../../components/Layout.vue';
 export default {
+   props: ["service", "price", "waytobuy","id"],
   data(){
         return {
             form:{
-                price_service:"",
-                price_price:"",
-                price_waytobuy:"",
+                price_service:this.service,
+                price_price:this.price,
+                price_waytobuy:this.waytobuy,
                 price_img:""
                 
 
@@ -148,10 +150,25 @@ export default {
   methods:{
     onsubmit(){
       this.$validator.validateAll().then(valid => {
-               console.log(this.form);
-               if(this.form.price_img=="")
-                return this.alertify.warning('กรุณาอัพโหลดรูปภาพ !!');
+               console.log(this.form.price_waytobuy);
+               if(this.form.price_img==""){return this.alertify.warning('กรุณาอัพโหลดรูปภาพ !!');}
+                
                 //axios ส่งข้อมูลไปยังแบคเอน
+                const parameters = {
+            "price_service": this.form.price_service,
+            "price_price": this.form.price_price,
+            "price_waytobuy": this.form.price_waytobuy,
+            "price_img": this.form.price_img,
+            "index":this.id
+            }
+                 axios.put('http://localhost:5000/editprice',parameters).then(res=>{
+        console.log("img")
+
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+           
            });
      
     },
@@ -174,8 +191,12 @@ export default {
         }
       }
       this.alertify.warning('กรุณาเลือกรูปภาพที่จะอัพโหลด');
+    },
+    
+  },
+  created(){
+      console.log(this.service+"ssssss")
     }
-  }
 };
 </script>
 

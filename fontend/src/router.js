@@ -39,11 +39,11 @@ export default new Router({
      {path:'/login', name:'login',component:Login},
 
      {path:'/admin', name:'equipment-list',component:List_Employees},
-     {path:'/admin/form', name:'admin-Edit_Employees',component:Edit_Employees},
+     {path:'/admin/form', name:'admin-Edit_Employees',component:Edit_Employees,props: true},
      {path:'/admin/List_income', name:'admin-List_income',component:List_income},
      {path:'/admin/List_Customer', name:'admin-List_Customer',component:List_Customer},
      {path:'/admin/List_Price', name:'admin-List_Price',component:List_Price},
-     {path:'/admin/Edit_Price', name:'admin-Edit_Price',component:Edit_Price},
+     {path:'/admin/Edit_Price', name:'admin-Edit_Price',component:Edit_Price,props: true},
      
      {path:'/customer/Booking', name:'customer-booking',component:Booking},
      {path:'/admin/Calendar', name:'admin-Calendar',component:Calendar}

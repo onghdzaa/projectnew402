@@ -102,6 +102,13 @@ export default {
             ]
         };
     },
+    methods:{BookingButton(){
+      this.push("https://router.vuejs.org/api/#router-aftereach");
+      console.log("sss")}
+      
+    }
+    
+    
 }
 </script>
 
