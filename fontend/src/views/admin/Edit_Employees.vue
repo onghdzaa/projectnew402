@@ -56,7 +56,7 @@
             style="max-width: 350px !important; margin: auto ;padding: 0.5rem 1rem;"
           >
             <label for="">รหัสพนักงาน</label>
-            <input type="text" 
+            <input type="text" disabled
             v-model.trim="form.eq_id" 
             name ="eq_id"
             v-validate="{ required:true}"
@@ -130,14 +130,17 @@
 
 <script>
 import Layout from "@/components/Layout";
+import axios from "axios";
 // import Layout from '../../components/Layout.vue';
 export default {
+  props:["id","name","tel"],
   data(){
+    console.log(this.id)
         return {
             form:{
-                eq_id:"",
-                eq_name:"",
-                eq_tel:"",
+                eq_id:this.id,
+                eq_name:this.name,
+                eq_tel:this.tel,
                 eq_img:""
                 
 
@@ -152,6 +155,20 @@ export default {
                if(this.form.eq_img=="")
                 return this.alertify.warning('กรุณาอัพโหลดรูปภาพ !!');
                 //axios ส่งข้อมูลไปยังแบคเอน
+                 const parameters = {
+            "id": this.form.eq_id,
+            "name": this.form.eq_name,
+            "tel": this.form.eq_tel,
+            "img": this.form.eq_img,
+            
+            }
+                 axios.put('http://localhost:5000/editemployee',parameters).then(res=>{
+        console.log("img")
+
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
            });
      
     },

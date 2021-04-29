@@ -88,7 +88,7 @@
           <tbody>
             <tr v-for="user in listcustomer" :key="user.numid">
               
-               <td>{{user.no}}</td>
+               <td>{{user.numid}}</td>
               <td>{{user.name}} </td>
                     <td>{{user.address}}</td>
                     <td>{{user.tel}}</td>
@@ -128,7 +128,7 @@ import {mapState} from "vuex";
 export default {
   components: { Layout,Pagination },
   computed:{
-    ...mapState(["listcustomer"])
+    ...mapState(["listcustomer"]),
   },
   created(){
   

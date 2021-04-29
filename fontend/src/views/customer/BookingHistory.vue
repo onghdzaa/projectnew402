@@ -72,7 +72,7 @@
             <tr v-for="sv in bookinghistory" :key="sv.id">
               <td>
                 <div class="img-container">
-                  <img src="/img/imguser.jpg" alt="employee" />
+                  <img v-bind:src="form.img" alt="bookinghistory" />
                 </div>
               </td>
                <td>{{sv.time}}</td>
@@ -129,28 +129,46 @@ computed:{
  data() {
         return {
             employees: [
+              
                 { time:'08.00-09.00', name: 'Frank phy', tel: '0908801234', numcar:'กข123',address:'14/53 มธ.',id: '01' },
                 { time:'09.00-10.00',name: 'Vic Reynolds', tel: '0908801234' , numcar:'กข123', address:'14/53 มธ.',id: '02'},
                 { time:'10.00-11.00', name: 'Gina Jabowski', tel: '0908801234' ,  numcar:'กข123',address:'14/53 มธ.',id: '03'},
                 
-            ]
+            ],
+            form:{
+              
+              img:"/img/imguser.jpg"
+            }
         };
     },
       created(){
-    axios
-            .get("http://localhost:5000/bookinghistory",{
-                    params: {
-                        id: this.$session.get("user")}
-                    })
-            .then((res) => {
+        
+    // axios
+    //         .get("http://localhost:5000/bookinghistory/search",{
+    //                 params: {
+    //                     id: this.$session.get("user")}
+    //                 })
+    //         .then((res) => {
               
-            //console.log(res)
+    //         //console.log(res)
+    //         })
+    //         .catch((error) => {
+              
+    //           console.error(error);
+    //         });
+            this.$store.dispatch("set_bookinghistory",this.$session.get('user'));
+            axios.post('http://localhost:5000/profile',{fullname:this.$session.get('user')}).then(res=>{
+             // console.log(res.data[0].img)
+       if(res.data[0].img!=null){
+         //console.log("sssssssss")
+          this.form.img=res.data[0].img
+       }
+
             })
-            .catch((error) => {
-              
-              console.error(error);
+            .catch(error =>{ 
+                console.error(error);
             });
-            this.$store.dispatch("set_bookinghistory");
+           
     },
 
 }

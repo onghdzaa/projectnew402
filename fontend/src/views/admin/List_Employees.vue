@@ -68,13 +68,13 @@
                   <img src="/img/imguser.jpg" alt="employee" />
                 </div>
               </td>
-               <td>{{sv.ID_Staff}}</td>
-              <td>{{sv.Full_Name}} </td>
-                    <td>{{sv.Tell_Staff}}</td>
+               <td>{{sv.id_staff}}</td>
+              <td>{{sv.full_name}} </td>
+                    <td>{{sv.tell_staff}}</td>
                    
               
               <td class="text-right">
-                <i @click="gotoEdit()"
+                <i @click="gotoEdit(sv.id_staff,sv.full_name,sv.tell_staff )"
                   class="pointer fa fa-pencil-square"
                   style="padding-right: 19%; color: #17a2bb"
                 >
@@ -124,8 +124,10 @@ this.$store.dispatch("set_staff");
 console.log(employees);
         }; 
 
-      },gotoEdit(){
-        this.$router.push({name :"admin-Edit_Employees"})
+      },gotoEdit(id,name,tel){
+        
+        this.$router.push({name :"admin-Edit_Employees",params:{ id:id,name:name,tel:tel
+        }})
     }
     }
 };

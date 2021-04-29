@@ -1,9 +1,9 @@
 import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
-
+//import VueSession from 'vue-session';
 Vue.use(Vuex);
-
+//Vue.use(VueSession);
 export default new Vuex.Store({
   state: {
     staff: [],
@@ -25,9 +25,9 @@ export default new Vuex.Store({
       axios
         .get("http://localhost:5000/staff")
         .then((res) => commit("set_staff", res.data)),
-    set_bookinghistory: ({ commit }) =>
+    set_bookinghistory: ({ commit }, id) =>
       axios
-        .get("http://localhost:5000/bookinghistory/api")
+        .get("http://localhost:5000/bookinghistory/apix/apix/"+id)
         .then((res) => commit("set_bookinghistory", res.data)),
     set_customer: ({ commit }) =>
       axios

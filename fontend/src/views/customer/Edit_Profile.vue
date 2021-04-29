@@ -214,24 +214,27 @@ export default {
   methods:{
     onsubmit(){
       this.$validator.validateAll().then(valid => {
-               console.log(this.form);
+              //  console.log(this.form);
                if(this.form.img=="")
                 {return this.alertify.warning('กรุณาอัพโหลดรูปภาพ !!');}
                 //axios ส่งข้อมูลไปยังแบคเอน
-                axios.put('http://localhost:5000/editprofile',{fullname:this.$session.get('user')}).then(res=>{
-        // console.log(this.$session.get('user'))
-        // this.form.name=res.data[0].name;
-        // this.form.tel=res.data[0].tel;
-        // this.form.email=res.data[0].email;
-        // this.form.address=res.data[0].address;
-        // this.form.model=res.data[0].numcar;
-        // this.form.numcar=res.data[0].numcar;
-        // this.form.username=res.data[0].user_id;
+                const parameters = {
+            "name": this.form.name,
+            "tel": this.form.tel,
+            "model": this.form.model,
+            "numcar": this.form.numcar,
+            "id": this.$session.get('user'),
+            "email": this.form.email,
+            "address": this.form.address,
+            "img": this.form.img,
+            }
+                axios.put('http://localhost:5000/editprofile',parameters).then(res=>{
+        console.log("img")
 
             })
             .catch(error =>{ 
                 console.error(error);
-            });
+           });
            });
      
     },
@@ -248,7 +251,7 @@ export default {
             // console.log(reader.result);
             // this.form.eq_image=reader.result;
             this.form.img = reader.result;
-
+          
           });
           return;
         }

@@ -193,6 +193,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Layout from "@/components/Layoutcustomer";
 import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
@@ -264,29 +265,24 @@ currentDateTime() {
                this.$validator.validateAll().then(valid => {
                 //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
                 // console.log(this.form);
-                if(this.form.numcar=="" ||this.form.model==""||this.form.radio=="")
-                return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
+                if(this.form.numcar=="" ||this.form.model==""||this.form.radio==""){return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')}
                 
-                 this.$router.push({ name: "BookingConfirm" });
-                console.log(this.form);
-           });
-           
-        },
-        BookingConfirm(){
-            axios
+                 axios
         .post("http://localhost:5000/profile", {
           fullname: this.$session.get("user"),
         })
         .then((res) => {
-          var prices = ""
-          if (this.form.type == "ล้างภายใน") {
-            prices = "100";
-          } else if (this.form.type == "ล้างภายนอก") {
-            prices = "150";
-          } else {
-            prices = "200";
-          }
-          //console.log(prices+"sssssss")
+           var prices =
+            axios
+            .post("http://localhost:5000/munuprice",{p:this.form.radio
+                    })
+            .then((ress) => {
+              
+              prices=ress.data[0].price
+            console.log(ress.data[0].price)
+            
+           
+        // console.log(prices)
           const parameters = {
             "name_member": res.data[0].name,
             "tel_member": res.data[0].tel,
@@ -299,7 +295,7 @@ currentDateTime() {
             "gps": this.mapcoordinates,
             "type": this.form.radio,
             "date": this.currentDateTime(),
-            "price": prices,
+            "price": ress.data[0].price,
             "status": "กำลังดำเนินการ",
             "id_member": this.$session.get("user"),
             "address": res.data[0].address
@@ -311,12 +307,86 @@ currentDateTime() {
             })
             .catch((error) => {
               console.error(error);
+            }); 
+        })
+            .catch((error) => {
+              
+              console.error(error);
             });
         })
         .catch((error) => {
           console.error(error);
         });
-          this.$router.push({ name: "BookingConfirm" });
+          // axios
+          //   .get("http://localhost:5000/bookinghistory/search",{
+          //           params: {
+          //               id: this.$session.get("user")}
+          //           })
+          //   .then((res) => {
+               
+          //   //console.log(res)
+          //   })
+          //   .catch((error) => {
+              
+          //     console.error(error);
+          //   });
+                 this.$router.push({ name: "BookingConfirm" });
+                //console.log(this.form);
+           });
+           
+        },
+        BookingConfirm(){
+          
+        //     axios
+        // .post("http://localhost:5000/profile", {
+        //   fullname: this.$session.get("user"),
+        // })
+        // .then((res) => {
+        //   var prices = ""
+        //     axios
+        //     .get("http://localhost:5000/munuprice",{
+        //             params: {
+        //                 type: this.form.radio}
+        //             })
+        //     .then((res) => {
+        //       prices=res.config.params.type
+        //     console.log(res.config.params.type)
+        //     })
+        //     .catch((error) => {
+              
+        //       console.error(error);
+        //     });
+        //   console.log(prices+"sssssss")
+        //   const parameters = {
+        //     "name_member": res.data[0].name,
+        //     "tel_member": res.data[0].tel,
+        //     "model": res.data[0].model,
+        //     "numcar": this.form.numcar,
+        //     "name_staff": this.name,
+        //     "tel_staff": this.tel,
+        //     "id_staff": this.staff,
+        //     "time": this.time,
+        //     "gps": this.mapcoordinates,
+        //     "type": this.form.radio,
+        //     "date": this.currentDateTime(),
+        //     "price": prices,
+        //     "status": "กำลังดำเนินการ",
+        //     "id_member": this.$session.get("user"),
+        //     "address": res.data[0].address
+        //   };
+        //   axios
+        //     .post("http://localhost:5000/booking", parameters)
+        //     .then((res) => {
+        //      // console.log(res.data);
+        //     })
+        //     .catch((error) => {
+        //       console.error(error);
+        //     });
+        // })
+        // .catch((error) => {
+        //   console.error(error);
+        // });
+         // this.$router.push({ name: "BookingConfirm" });
         }
     
   },
