@@ -4,11 +4,11 @@
       <div class="container">
           <slot name="buttons"> </slot>
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-lg-9">
                    <slot> </slot> 
                 
                 </div>
-                <div class="col-sm-3">
+                <div class="col-lg-3" >
                     <sidebar />
                 </div>
             </div>

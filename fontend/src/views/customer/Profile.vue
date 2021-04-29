@@ -37,7 +37,7 @@
         <div class="col-sm-4 " >
           <img src="/img/customer2.png"  alt="user" class="img-booking" style="max-width: 100%;">
         </div>
-        <div class="col-sm-8  " style="margin-left:-90px ;" >
+        <div class="col-sm-8  " style=" margin-left: -40px ;">
           <div class="card-body" style="font-size: 19px;color:dimgray;">
             <div>ชื่อ - นามสกุล : {{name}}</div>
             <div>เบอร์โทรศัพท์ : {{tel}}</div>
@@ -137,18 +137,11 @@ export default {
   border-right: solid 5px #17A2BB;
 }
 @media screen and (max-width: 575.98px) {
- /* .form-group .img-fluid{
-   /* max-width:300px;
-   max-height:360px; */
-   
-   /* margin-right: 15px;
- } * */
- /* .col-sm-6 .btn-danger {
-    margin-top: 10px
 
- } */
  .col-sm-8 .card-body{
-    margin-left: 95px;
+    margin-left: 70px !important;
+     margin-right: 50px !important;
+     font-size: 18px !important;
  }
 
   

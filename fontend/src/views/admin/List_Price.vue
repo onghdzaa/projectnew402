@@ -49,9 +49,9 @@
           <i class="fa fa-align-justify"> </i>
           แสดงราคาค่าบริการแต่ละประเภท
         </header>
-        <hr />
+      
         <div class="table-responsive">
-        <table class="table">
+        <table class="table" style="font-size: 17px;white-space: nowrap">
           <thead>
             <tr>
                 

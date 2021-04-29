@@ -7,7 +7,7 @@
           ส่วนของผู้ใช้
         </h5>
       </header>
-      <div class="card-body" style="margin-left: 0; margin-right: 0">
+      <div class="card-body" style="padding: 1rem 0rem !important">
         <router-link to="/customer/Booking" class="sidebar-link">
           <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
           จองคิวล้างรถ
@@ -27,6 +27,10 @@
           <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
           ประวัติการจอง
         </router-link>
+        <router-link to='/customer/Price' class="sidebar-link">
+          <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
+          ราคาค่าบริการ
+        </router-link>
       </div>
     </section>
 <!-- card ส่วนที่ 2 -->
@@ -37,7 +41,7 @@
           ตั้งค่าอื่นๆ
         </h5>
       </header>
-      <div class="card-body" style="margin-left: 0; margin-right: 0">
+      <div class="card-body" style="padding: 1rem 0rem !important">
         <router-link to="/customer/Profile" class="sidebar-link">
           <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
           ประวัติส่วนตัว
@@ -83,7 +87,7 @@ export default {
   color: dimgray;
   font-weight: 500;
   font-size: 19px;
-  text-decoration: none;
+  text-decoration: none !important;
   /* background-color: none;
        background: none;  */
   border: none;

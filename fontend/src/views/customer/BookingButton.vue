@@ -44,11 +44,7 @@
         </div>
         <div
           class="col-sm-8"
-          style="
-            padding-left: 0% !important;margin-left: -90px;
-            
-           
-          "
+         style=" margin-left: -40px ;"
         >
           <div class="card-body" style="font-size: 22px; color: dimgray">
             <br />
@@ -91,7 +87,7 @@
               <input  
                 type="text"
                 class="form-control"
-                style="font-size: 21px; margin-bottom: 15px;"
+                style="font-size: 21px; margin-bottom: 25px;"
                  name=" model"
                              v-validate="{required: true}"
                             v-model.trim = form.model 
@@ -113,7 +109,7 @@
                 checked
               />
               <label class="form-check-label" >
-                ล้างภายใน
+                ล้างภายใน 200 บาท
               </label>
             </div>
 
@@ -130,7 +126,7 @@
                 checked
               />
               <label class="form-check-label" for="fexampleRadios2">
-                ล้างภายนอก
+                ล้างภายนอก 200 บาท
               </label>
             </div>
 
@@ -147,7 +143,7 @@
                 checked
               />
               <label class="form-check-label" >
-                ล้างภายใน+ภายนอก
+                ล้างภายใน+ภายนอก 300 บาท
               </label>
             </div>
             <br>
@@ -167,7 +163,7 @@
                 <GmapMap
                   :center="coordinates"
                   :zoom="14"
-                  style="width:640px; height:360px;"
+                  style="max-width:660px; height:260px;"
                   ref="mapRef"
                 >
                   <gmap-marker :position="mapcoordinates"> </gmap-marker>
@@ -422,4 +418,22 @@ currentDateTime() {
 .card {
   border-right: solid 5px #17a2bb;
 }
+@media screen and (max-width: 575.98px) {
+ /* .form-group .img-fluid{
+   /* max-width:300px;
+   max-height:360px; */
+   
+   /* margin-right: 15px;
+ } * */
+ /* .col-sm-6 .btn-danger {
+    margin-top: 10px
+
+ } */
+.GmapMap {
+width:220px !important; 
+height:60px !important;
+}
+  
+}
+
 </style>

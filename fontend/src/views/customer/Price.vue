@@ -13,24 +13,10 @@
           margin-bottom: 15px;
           min-width: 130px;
         "
-        to="/admin"
-        >รายการข้อมูล</router-link
+        to="/customer/Price"
+        >ราคาค่าบริการ</router-link
       >
-      <router-link
-        class="btn"
-        style="
-          background-color: #17a2bb;
-          color: #fff;
-          margin-right: 10px;
-          width: 15%;
-          font-size: 17px;
-          border-radius: 4px;
-          margin-bottom: 15px;
-          min-width: 130px;
-        "
-        to="/admin/form"
-        >เพิ่ม/แก้ไขข้อมูล</router-link
-      >
+      
     </div>
     <div class="card">
       <div
@@ -47,44 +33,39 @@
         <br />
         <header class="mb-4" >
           <i class="fa fa-align-justify"> </i>
-          แสดงจำนวนข้อมูลของพนักงาน
+          แสดงราคาค่าบริการแต่ละประเภท
         </header>
-        
+      
         <div class="table-responsive">
         <table class="table" style="font-size: 17px;white-space: nowrap">
           <thead>
             <tr>
+                
               <th>รูปภาพ</th>
-              <th>รหัสพนักงาน</th>
-              <th>ชื่อ-นามสกุล</th>
-              <th>เบอร์โทรศัพท์</th>
+              <th>ประเภทการบริการ</th>
+              <th>ราคา</th>
+              <th>วิธีการชำระเงิน</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="sv in staff" :key="sv.ID_Staff">
+            <tr v-for="sv in service" :key="sv.services">
               <td>
                 <div class="img-container">
-                  <img src="/img/imguser.jpg" alt="employee" />
+                  <img src="/img/ล้างรถภายใน.png" alt="sv" />
                 </div>
               </td>
-               <td>{{sv.id_staff}}</td>
-              <td>{{sv.full_name}} </td>
-                    <td>{{sv.tell_staff}}</td>
+               
+              <td>{{sv.services}} </td>
+                    <td>{{sv.price}}</td>
+                    <td>{{sv.waytobuy}}</td>
                    
               
-              <td class="text-right">
-                <i @click="gotoEdit(sv.id_staff,sv.full_name,sv.tell_staff )"
-                  class="pointer fa fa-pencil-square"
-                  style="padding-right: 19%; color: #17a2bb"
-                >
-                </i>
-                <i @click="onDelete(employee)" class="pointer fa fa-trash" style="color: #ed2939"> </i>
-              </td>
+            
             </tr>
           </tbody>
         </table>
-        </div>
+         </div>
         <!-- <Pagination/> -->
         <!-- <header>
           <i class="fa fa-list-alt"> </i>
@@ -96,39 +77,31 @@
 </template>
 
 <script>
-import Layout from "@/components/Layout";
+import Layout from "@/components/Layoutcustomer";
 import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
 import {mapState} from "vuex";
 export default {
   components: { Layout,Pagination },
-  computed:{
-    ...mapState(["staff"])
-  },
-   created(){
-this.$store.dispatch("set_staff");
-  },
+//    computed:{
+//     ...mapState(["listprice"])
+//   },
+//   created(){
+// this.$store.dispatch("set_listprice");
+//   },
    data() {
         return {
-            employees: [
-                { id: '00001', name: 'Frank Murphy', tel: '0908801234' },
-                { id: '00002',name: 'Vic Reynolds', tel: '0908801234' },
-                { id: '00003',name: 'Gina Jabowski', tel: '0908801234' },
-                
+            service: [
+                {  services: 'ล้างภายใน', price: '200',waytobuy:'เงินสด / โอนเงิน' },
+                { services: 'ล้างภายนอก', price: '200' ,waytobuy:'เงินสด / โอนเงิน'},
+                { services: 'ล้างภายใน + ภายนอก', price: '300' ,waytobuy:'เงินสด / โอนเงิน'},
+                // { Name: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com', role: 'User' },
+                // { Name: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com', role: 'User' }
             ]
         };
     },
     methods:{
-      onDelete(employees){
-    this.alertify.confirm('คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?').setHeader('<em> แจ้งเตือน ! </em> '),() =>{
-console.log(employees);
-        }; 
-
-      },gotoEdit(id,name,tel){
-        
-        this.$router.push({name :"admin-Edit_Employees",params:{ id:id,name:name,tel:tel
-        }})
-    }
+    
     }
 };
 </script>

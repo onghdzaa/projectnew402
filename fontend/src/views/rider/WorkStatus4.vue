@@ -1,36 +1,6 @@
 <template>
   <Layout>
-    <div slot="buttons" class="form-group">
-      <!-- <router-link
-        class="btn btn-menu"
-        style="
-          background-color: #17a2bb;
-          color: #fff;
-          margin-right: 10px;
-          width: 15%;
-          font-size: 17px;
-          border-radius: 4px;
-          margin-bottom: 15px;
-          min-width: 130px;
-        "
-        to="/rider/WorkStatus"
-        >ขั้นตอนที่ 1</router-link
-      >
-        <router-link
-        class="btn btn-menu"
-        style="
-          background-color: #17a2bb;
-          color: #fff;
-          margin-right: 10px;
-          width: 15%;
-          font-size: 17px;
-          border-radius: 4px;
-          margin-bottom: 15px;
-          min-width: 130px;
-        "
-        to="/rider/WorkStatus2"
-        >ขั้นตอนที่ 2</router-link
-      > -->
+      <div slot="buttons" class="form-group">
       <router-link
         class="btn btn-menu"
         style="
@@ -43,14 +13,16 @@
           margin-bottom: 15px;
           min-width: 130px;
         "
-        to="/rider/WorkStatus3"
-        >ขั้นตอนที่ 3</router-link
+        to="/rider/WorkCalendar4"
+        >ขั้นตอนที่ 4</router-link
       >
+       
+      
+ 
     </div>
-    <div class="card">
-      <div
-        class="card-body"
-        style="
+     <div class="card">
+         <div class="card-body"
+         style="
           padding-left: 9%;
           padding-right: 9%;
           margin-left: 0%;
@@ -58,44 +30,34 @@
           text-align: left;
           font-size: 21px;
         "
-      >
-        <br />
-        <header>
-          <div>
-            ขั้นตอนที่ 3 :
-            <i class="fa fa-pencil-square"> </i> อัพเดทสถานะการให้บริการ (3/4)
+         >
+       <br>
+             <header>
+               <div>
+            ขั้นตอนที่ 4 :
+            <i class="fa fa-pencil-square"> </i> อัพเดทสถานะการให้บริการ (4/4)
           </div>
-        </header>
-        <b-progress
-          :value="75"
-          variant="info"
-          striped
-          :animated="animate"
-          class="mt-2"
-        ></b-progress>
-        <hr />
-        <br /><br />
-
-        <div class="row" style="margin-top: 0% !important">
-          <div
-            class="col-sm-4"
-            style="max-width: 100%; margin-top: 0 !important"
-          >
-            <img
-              src="/img/start5.png"
-              alt="user"
-              class="img-booking"
-              style="max-width: 100%; margin-top: 0 !important"
-            />
-          </div>
-
-          <div class="col-sm-8">
-            <div>
-              <i class="fa fa-tint" aria-hidden="true"></i>
-              พนักงานล้างรถเสร็จสิ้น
-            </div>
-            <br />
-            <form @submit.prevent="onsubmit()">
+            
+             </header>
+               <b-progress :value="100"  variant="info" striped :animated="animate"  class="mt-2"></b-progress>
+             <hr>
+ <br><br>
+            
+      <div class="row " style="margin-top:0% !important;">
+        <div class="col-sm-4 " style="max-width: 100%;margin-top:0 !important;">
+          <img src="/img/start3.png"  alt="user" class="img-booking" style="max-width: 100%;margin-top:0 !important;">
+      
+    
+        </div>
+        
+        <div class="col-sm-8">
+          
+        <div>    <i class="fa fa-check-square" aria-hidden="true"></i> ชำระเงินเสร็จสิ้น</div>
+        <br>
+        <hr>
+        <div><i class="fa fa-money" aria-hidden="true"></i> ประเภทการชำระเงิน</div>
+              <br />
+              <form @submit.prevent="onsubmit()">
               <div class="form-check">
                 <input
                   class="form-check-input"
@@ -105,12 +67,31 @@
                   v-model.trim="form.radio"
                   :class="{ 'is-invalid': errors.has(' radio') }"
                   id="radio"
-                  value="ล้างรถเสร็จสิ้น"
+                  value="เงินสด"
                   checked
                 />
 
-                <label class="form-check-label"> ล้างรถเสร็จสิ้น </label>
- <br />
+                <label class="form-check-label"> เงินสด </label>
+
+                <br />
+
+                
+              </div>
+               <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="radio"
+                  v-validate="{ required: true }"
+                  v-model.trim="form.radio"
+                  :class="{ 'is-invalid': errors.has(' radio') }"
+                  id="radio"
+                  value="โอนเงิน"
+                  checked
+                />
+
+                <label class="form-check-label"> โอนเงิน </label>
+
                 <br />
 
                 <hr />
@@ -118,7 +99,7 @@
               <br />
               <div>
                 <i class="fa fa-file-image-o" aria-hidden="true"></i>
-                อัพโหลดรูปภาพรถหลังงานเสร็จสิ้น
+                อัพโหลดรูปภาพหลักฐานการชำระเงิน
               </div>
               <br />
               <div
@@ -172,10 +153,17 @@
                 </button>
               </div>
             </form>
-          </div>
+              <!-- พัก -->
+         
+
         </div>
-      </div>
+
     </div>
+
+
+
+         </div>
+     </div>
   </Layout>
 </template>
 
@@ -183,29 +171,34 @@
 import Layout from "@/components/Layoutrider";
 
 export default {
-  components: {
-    Layout,
-  },
-  data() {
+components:{
+    Layout
+},data() {
     return {
-      form: {
-        radio: "",
-        img: ""
-      },
+     
+      form:{
+               
+                radio:"",
+                img:""
+               
+                
+
+            }
     };
   },
-  methods: {
-    onsubmit() {
-      this.$validator.validateAll().then((valid) => {
-        //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
-        // console.log(this.form);
-        if (this.form.radio == "" || this.form.img == "")
-          return this.alertify.warning("กรุณากรอกข้อมูลให้ครบ !!");
-
-        this.$router.push({ name: "rider-WorkStatus4" });
-        console.log(this.form);
-      });
-    },
+    methods:{
+     onsubmit(){  
+               this.$validator.validateAll().then(valid => {
+                //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
+                // console.log(this.form);
+                if(this.form.radio==""|| this.form.img == "")
+                return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
+                
+               this.$router.push({ name: "rider-WorkStatus5" });
+                console.log(this.form);
+           });
+           
+        }, 
     onChangeFile(input) {
       // const imag =""
       this.form.img = "";
@@ -225,14 +218,15 @@ export default {
       }
       this.alertify.warning("กรุณาเลือกรูปภาพที่จะอัพโหลด");
     },
-  },
-};
+    }
+}
 </script>
 
 <style>
-@media screen and (max-width: 575.98px) {
+
+@media screen and (max-width: 575.98px){
   .form .form-group .btn {
-    width: 100%;
+    width:100%;
   }
 }
 </style>

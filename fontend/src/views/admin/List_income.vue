@@ -14,7 +14,7 @@
           min-width: 130px;
         "
         to="/admin/List_income"
-        >ข้อมูลรายรับประจำวัน</router-link
+        >รายรับประจำวัน</router-link
       >
       <!-- <router-link
         class="btn"
@@ -81,9 +81,9 @@
           <i class="fa fa-align-justify"> </i>
           แสดงข้อมูลรายรับประจำวัน
         </header>
-        <hr />
+        
         <div class="table-responsive">
-        <table class="table">
+        <table class="table" style="font-size: 17px;white-space: nowrap">
           <thead>
             <tr>
               
@@ -91,6 +91,7 @@
               <th>ชื่อ-นามสกุล</th>
               <th>ยอดชำระ</th>
               <th>รูปภาพสลิป</th>
+              <th>รูปภาพหลังงานเสร็จ</th>
               <th></th>
             </tr>
           </thead>
@@ -101,9 +102,16 @@
               <td>{{user.Name}} </td>
                     <td>{{user.cash}}</td>
                    <td>
-                <div class="img-container">
-                  <img src="/img/slip.jpg" alt="user" />
+                <div class="img-container" @click="zoomimg()">
+                  <img src="/img/slip.jpg"   alt="user" />
                 </div>
+                
+              </td>
+               <td>
+                <div class="img-container">
+                  <img src="/img/reviewcar.png" alt="user" />
+                </div>
+                
               </td>
               
               <!-- <td class="text-right">
@@ -120,7 +128,7 @@
         </table>
         </div>
         <div class="total" style="text:r">
-            <h4 > รวมยอดเงิน : 700 บาท </h4>
+            <h5 > รวมยอดเงิน : 700 บาท </h5>
         </div>
         
         <!-- <Pagination/> -->
@@ -159,6 +167,9 @@ console.log(users);
 // console.log(users);
 //         })
         
+      }
+      ,zoomimg(){
+         this.$router.push({ name: "rider-WorkStatus4" });
       }
     }
 };
