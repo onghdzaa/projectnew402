@@ -7,7 +7,7 @@
           ส่วนของพนักงาน
         </h5>
       </header>
-      <div class="card-body" style="margin-left: 0; margin-right: 0">
+      <div class="card-body" style="padding: 1rem 0rem !important">
         <router-link to="/rider/WorkCalendar" class="sidebar-link">
           <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
           ตารางคิวงานทั้งหมด
@@ -37,7 +37,7 @@
           ตั้งค่าอื่นๆ
         </h5>
       </header>
-      <div class="card-body" style="margin-left: 0; margin-right: 0">
+      <div class="card-body" style="padding: 1rem 0rem !important">
         <router-link to="/rider/ProfileRider" class="sidebar-link">
           <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
           ประวัติส่วนตัว
@@ -83,7 +83,7 @@ export default {
   color: dimgray;
   font-weight: 500;
   font-size: 19px;
-  text-decoration: none;
+  text-decoration: none !important;
   /* background-color: none;
        background: none;  */
   border: none;

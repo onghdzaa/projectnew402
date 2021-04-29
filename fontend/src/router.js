@@ -14,17 +14,21 @@ import List_Price from './views/admin/List_Price'
 import Edit_Price from './views/admin/Edit_Price'
 
 import Calendar from './views/admin/Calendar'
-// import status from './views/customer/status' BookingButton BookingConfirm BookingHistory ProfileRider EditProfileRider
+// import status from './views/customer/status' BookingButton BookingConfirm BookingHistory ProfileRider EditProfileRider price
 import BookingButton from './views/customer/BookingButton'
 import BookingConfirm from './views/customer/BookingConfirm'
 import BookingHistory from './views/customer/BookingHistory'
 import BookingStatus from './views/customer/BookingStatus'
 import Profile from './views/customer/Profile'
+import Rating from './views/customer/Rating'
+import Price from './views/customer/Price'
 import Edit_Profile from './views/customer/Edit_Profile'
 import WorkCalendar from './views/rider/WorkCalendar'
 import WorkStatus from './views/rider/WorkStatus'
 import WorkStatus2 from './views/rider/WorkStatus2'
 import WorkStatus3 from './views/rider/WorkStatus3'
+import WorkStatus4 from './views/rider/WorkStatus4'
+import WorkStatus5 from './views/rider/WorkStatus5'
 import ProfileRider from './views/rider/ProfileRider'
 import EditProfileRider from './views/rider/EditProfileRider'
 
@@ -69,6 +73,12 @@ export default new Router({
      {path:'/rider/WorkStatus2', name:'rider-WorkStatus2',component:WorkStatus2}
      ,
      {path:'/rider/WorkStatus3', name:'rider-WorkStatus3',component:WorkStatus3}
+     ,
+     {path:'/rider/WorkStatus4', name:'rider-WorkStatus4',component:WorkStatus4},
+     ,
+     {path:'/rider/WorkStatus5', name:'rider-WorkStatus5',component:WorkStatus5},
+     {path:'/customer/Rating', name:'customer-Rating',component:Rating},
+     {path:'/customer/Price', name:'customer-Price',component:Price}
      
   ]
 })

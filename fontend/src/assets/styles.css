@@ -60,4 +60,11 @@ body {
     .table-responsive .table th {
         white-space: nowrap;
     }
+    .card-body {
+        margin-bottom: 7%;
+        
+    }
+    .card-header{
+        margin-top: 7%;
+    }
 }

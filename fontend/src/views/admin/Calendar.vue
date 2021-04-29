@@ -55,9 +55,9 @@
          
                     
         </header>
-        <hr />
+        
         <div class="table-responsive">
-   <table class="table" style="font-size: 17px;">
+   <table class="table" style="font-size: 17px;white-space: nowrap">
           <thead>
             <tr>
               <th>รูป</th>

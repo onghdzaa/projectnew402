@@ -13,24 +13,10 @@
           margin-bottom: 15px;
           min-width: 130px;
         "
-        to="/admin/List_Price"
+        to="/customer/Price"
         >ราคาค่าบริการ</router-link
       >
-      <router-link
-        class="btn"
-        style="
-          background-color: #17a2bb;
-          color: #fff;
-          margin-right: 10px;
-          width: 15%;
-          font-size: 17px;
-          border-radius: 4px;
-          margin-bottom: 15px;
-          min-width: 130px;
-        "
-        to="/admin/Edit_Price"
-        >เพิ่ม/แก้ไขราคา</router-link
-      >
+      
     </div>
     <div class="card">
       <div
@@ -63,27 +49,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="sv in listprice" :key="sv.type">
+            <tr v-for="sv in service" :key="sv.services">
               <td>
                 <div class="img-container">
                   <img src="/img/ล้างรถภายใน.png" alt="sv" />
                 </div>
               </td>
                
-              <td>{{sv.type}} </td>
+              <td>{{sv.services}} </td>
                     <td>{{sv.price}}</td>
-                    <td>{{sv.process}}</td>
+                    <td>{{sv.waytobuy}}</td>
                    
               
-              <td class="text-right">
-                <i  
-                 @click="gotoEdit()"
-                  class="pointer fa fa-pencil-square"
-                  style="padding-right: 19%; color: #17a2bb"
-                >
-                </i>
-                <i @click="onDelete(sv)" class="pointer fa fa-trash" style="color: #ed2939"> </i>
-              </td>
+            
             </tr>
           </tbody>
         </table>
@@ -99,18 +77,18 @@
 </template>
 
 <script>
-import Layout from "@/components/Layout";
+import Layout from "@/components/Layoutcustomer";
 import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
 import {mapState} from "vuex";
 export default {
   components: { Layout,Pagination },
-   computed:{
-    ...mapState(["listprice"])
-  },
-  created(){
-this.$store.dispatch("set_listprice");
-  },
+//    computed:{
+//     ...mapState(["listprice"])
+//   },
+//   created(){
+// this.$store.dispatch("set_listprice");
+//   },
    data() {
         return {
             service: [
@@ -123,15 +101,7 @@ this.$store.dispatch("set_listprice");
         };
     },
     methods:{
-      onDelete(service){
-
-         this.alertify.confirm('คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?').setHeader('<em> แจ้งเตือน ! </em> '),() =>{
-console.log(service);
-        }
-        
-      },gotoEdit(){
-        this.$router.push({name :"admin-Edit_Price"})
-    }
+    
     }
 };
 </script>

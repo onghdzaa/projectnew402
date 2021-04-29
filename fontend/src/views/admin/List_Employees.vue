@@ -49,9 +49,9 @@
           <i class="fa fa-align-justify"> </i>
           แสดงจำนวนข้อมูลของพนักงาน
         </header>
-        <hr />
+        
         <div class="table-responsive">
-        <table class="table">
+        <table class="table" style="font-size: 17px;white-space: nowrap">
           <thead>
             <tr>
               <th>รูปภาพ</th>

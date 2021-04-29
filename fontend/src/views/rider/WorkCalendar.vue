@@ -14,7 +14,7 @@
           min-width: 130px;
         "
         to="/rider/WorkCalendar"
-        >ตารางงานของพนักงาน</router-link
+        >ตารางงานพนักงาน</router-link
       >
      
     </div>
@@ -35,9 +35,9 @@
           <i class="fa fa-align-justify"> </i>
           แสดงตารางงานของพนักงาน
         </header>
-        <hr />
+        
            <div class="table-responsive">
-        <table class="table" style="font-size: 16px;">
+        <table class="table" style="font-size: 16px;white-space: nowrap">
           <thead>
             <tr>
               

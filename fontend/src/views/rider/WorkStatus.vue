@@ -16,8 +16,8 @@
         to="/rider/WorkStatus"
         >ขั้นตอนที่ 1</router-link
       >
-        <router-link
-        class="btn btn-menu"
+        <!-- <router-link
+        class="btn btn-menu" disabled
         style="
           background-color: #17a2bb;
           color: #fff;
@@ -45,7 +45,7 @@
         "
         to="/rider/WorkStatus3"
         >ขั้นตอนที่ 3</router-link
-      >
+      > -->
  
     </div>
      <div class="card">
@@ -56,15 +56,31 @@
           margin-left: 0%;
           margin-right: 0%;
           text-align: left;
-          font-size: 22px;
+          font-size: 21px;
         "
          >
        <br>
              <header>
-               <div>ขั้นตอนที่ 1 : <i class="fa fa-pencil-square" > </i> อัพเดทสถานะการให้บริการ</div>
+               <div>
+   <!-- <b-progress :value="25" show-progress variant="success" striped :animated="animate"></b-progress> -->
+    <!-- <b-progress :value="25" show-progress variant="info" striped :animated="animate" class="mt-2"></b-progress> -->
+    <!-- <b-progress :value="75" show-progress variant="warning" striped :animated="animate" class="mt-2"></b-progress> -->
+    
+
+    
+
+    
+  </div>
+               <div>ขั้นตอนที่ 1 : <i class="fa fa-pencil-square" > </i> อัพเดทสถานะการให้บริการ (1/4)</div>
             
              </header>
+             
+    
+    <div></div>
+               <b-progress :value="25"  variant="info" striped :animated="animate"  class="mt-2"></b-progress>
+               
              <hr>
+
  <br><br>
             
       <div class="row " style="margin-top:0% !important;">
@@ -75,7 +91,7 @@
         </div>
         
         <div class="col-sm-8">
-        <div>  พนักงานออกเดินทางไปยังที่อยู่ลูกค้า <i class=" fa fa-road" aria-hidden="true"></i> </div>
+        <div>   <i class=" fa fa-road" aria-hidden="true"></i> พนักงานออกเดินทางไปยังที่อยู่ลูกค้า</div>
         <br>
         <form  @submit.prevent="onsubmit()">
    <div class="form-check">
@@ -101,9 +117,10 @@
             <div> +++++ ลีอองใส่ map </div>
             <br><br>
              <div class="form-group">
-<button type="submit" class="btn btn-info btn-block" style=" width:40%;background-color: #17A2BB;color:#fff;">
+<button type="submit" class="btn btn-info btn-block" style=" font-size:17px;width:40%;background-color: #17A2BB;color:#fff;">
                   ต่อไป >
                 </button>
+                  
  </div>
            
 </form>
@@ -133,9 +150,7 @@ components:{
      
       form:{
                
-                radio:""
-               
-                
+                radio:"",
 
             }
     };

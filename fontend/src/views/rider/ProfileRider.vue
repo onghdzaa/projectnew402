@@ -37,7 +37,7 @@
         <div class="col-sm-4 " >
           <img src="/img/employee.png"  alt="user" class="img-booking" style="max-width: 100%;">
         </div>
-        <div class="col-sm-8  " style="margin-left:-90px ;" >
+        <div class="col-sm-8  " style=" margin-left: -40px ;" >
           <div class="card-body" style="font-size: 19px;color:dimgray;">
             <div>ชื่อ - นามสกุล : {{name}}</div>
             <div>เบอร์โทรศัพท์ : {{tel}}</div>
@@ -90,5 +90,13 @@ components:{
 </script>
 
 <style>
+@media screen and (max-width: 575.98px) {
 
+ .col-sm-8 .card-body{
+    margin-left: 70px !important;
+     margin-right: 50px !important;
+ }
+
+  
+}
 </style>

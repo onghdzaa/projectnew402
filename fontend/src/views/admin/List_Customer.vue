@@ -67,9 +67,9 @@
           <i class="fa fa-address-card"> </i>
             แสดงข้อมูลลูกค้า
         </header>
-        <hr />
+        
         <div class="table-responsive">
-        <table class="table" style="font-size: 17px;">
+        <table class="table" style="font-size: 17px;white-space: nowrap">
           <thead>
             <tr>
               

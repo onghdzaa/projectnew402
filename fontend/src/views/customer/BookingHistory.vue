@@ -50,9 +50,9 @@
           <i class="fa fa-align-justify"> </i>
           แสดงประวัติการจอง
         </header>
-        <hr />
+        
         <div class="table-responsive">
-        <table class="table" style="font-size: 16px;">
+        <table class="table" style="font-size: 17px;white-space: nowrap">
           <thead>
             <tr>
               <th>รูป</th>

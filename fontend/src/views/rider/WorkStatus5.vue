@@ -28,8 +28,8 @@
           margin-bottom: 15px;
           min-width: 130px;
         "
-        to="/rider/WorkStatus2"
-        >ขั้นตอนที่ 2</router-link
+        to="/rider/WorkCalendar"
+        >ตารางงานพนักงาน</router-link
       >
         <!-- <router-link
         class="btn btn-menu"
@@ -61,58 +61,29 @@
          >
        <br>
              <header>
-               <div>ขั้นตอนที่ 2 : <i class="fa fa-pencil-square" > </i> อัพเดทสถานะการให้บริการ (2/4)</div>
+               <div> <i class="fa fa-pencil-square" > </i> อัพเดทสถานะการให้บริการ </div>
             
              </header>
-             <b-progress :value="50"  variant="info" striped :animated="animate"  class="mt-2"></b-progress>
+             <!-- <b-progress :value="50"  variant="info" striped :animated="animate"  class="mt-2"></b-progress> -->
              <hr>
                
- <br><br>
+ 
             
       <div class="row " style="margin-top:0% !important;">
         <div class="col-sm-4 " style="max-width: 100%;margin-top:0 !important;">
-          <img src="/img/start2.png"  alt="user" class="img-booking" style="max-width: 100%;margin-top:0 !important;">
+          <img src="/img/start6.png"  alt="user" class="img-booking" style="max-width: 100%;margin-top:0 !important;">
       
     
         </div>
         
         <div class="col-sm-8">
-        <div>  <i class="fa fa-home" aria-hidden="true"></i>  พนักงานไปถึงที่อยู่ลูกค้า</div>
+            <br><br>
+        <div> <i class="fa fa-check-square" aria-hidden="true"></i>  สถานะงานเสร็จสิ้น </div>
         <br>
-        <form  @submit.prevent="onsubmit()">
-   <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radio"
-                 v-validate="{required: true}"
-                            v-model.trim = form.radio
-                            :class="{ 'is-invalid' : errors.has(' radio')}" 
-                id="radio"
-                value="ถึงจุดหมาย"
-                checked
-              />
-
-              <label class="form-check-label" >
-                ถึงจุดหมาย
-              </label>
-
-            </div>
-            <br><br>
-            <!-- ใน div ใส่ map ที่ปักข้อมูลที่อยู่ลูกค้าแล้ว -->
-            <div> +++++ ลีอองใส่ map </div>
-            <br><br>
-             <div class="form-group">
-<button type="submit" class="btn btn-info btn-block" style=" font-size:17px;width:40%;background-color: #17A2BB;color:#fff;">
-                  ต่อไป >
-                </button>
- </div>
-           
-</form>
+      
  <br><br><br> 
 
 
-                <br><br><br>
         </div>
 
     </div>

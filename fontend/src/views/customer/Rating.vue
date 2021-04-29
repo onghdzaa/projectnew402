@@ -14,7 +14,7 @@
           min-width: 130px;
         "
         to="/customer/BookingStatus"
-        >สถานะการจอง</router-link
+        >ย้อนกลับ</router-link
       >
       <!-- <router-link
         class="btn"
@@ -51,22 +51,35 @@
           "
         ><div class="card-body" style="font-size: 19px; color: dimgray">
             <br />
-          <div class="head" style="color: green ;font-size: 23px;"> สถานะการจอง : " กำลังดำเนินการ "  </div>
+          <div class="head" style="color: green ;font-size: 23px;"> <i class="fa fa-check-square-o" aria-hidden="true"></i> " ยืนยันการล้างรถเสร็จสิ้น "  </div>
             <div> จองคิวบริการล้างรถวันที่ : 29 / 03 / 64</div>
             <div> เวลาให้บริการ : 08.00 - 09.00</div>
             <hr>
             <div>ชื่อ - นามสกุล : นาย สมสุข ใจดี</div>
             <div>เบอร์โทรศัพท์ : 0908807104</div>
             <div>รหัสพนักงาน : 00004</div>
-            <!-- <div>รหัสพนักงาน : 00004</div>margin-top:10px; -->
-            <div> สถานะงานเสร็จสิ้น :  <button type="submit" @click="BookingSuccess()" class="btn btn-info btn-block" style=" display:inline;margin-left:10px;max-width:75px;background-color: #17A2BB;color:#fff;"> ยืนยัน</button></div>
-
+            <div></div>
             <hr />
-            <br>
+            
+            <div class="head" style="color: green ;font-size: 23px;"> <i class="fa fa-star-half-o" aria-hidden="true"></i> " ให้คะแนนพนักงาน "  </div>
             <div>
-    
+     
+    <b-form-rating v-model="value"></b-form-rating>
+    <p class="mt-2">คะแนน : {{ value }} / 5 </p>
   </div>
+    <!-- <div><button type="submit" @click="BookingSuccess()" class="btn btn-info btn-block" style=" font-size: 19px;display:inline;max-width:95px;background-color: #17A2BB;color:#fff;"> ยืนยัน</button></div> -->
+    <div>
+
+  <b-button v-b-modal.modalPopover type="submit" @click="onsubmit()" style="border:none; font-size: 19px;display:inline;max-width:95px;background-color: #17A2BB;color:#fff;"> ยืนยัน</b-button>
+
+ 
+  <b-modal  id="modalPopover" title="เสร็จสิ้น" ok-only @click="gotobooking()" >ให้คะแนนเสร็จสิ้น !</b-modal>
+</div>
+
+
+
           </div>
+          
           
         </div>
       </div>
@@ -82,7 +95,7 @@ export default {
   components: { Layout, Pagination },
   data() {
       return {
-        status: 'succcess'
+        value: null
       }
     },
   methods: {
@@ -90,10 +103,11 @@ export default {
       this.$router.push({ name: "BookingButton" });
     }, onsubmit(){
            
-               console.log(this.form);
-           
-        },BookingSuccess(){
-          this.$router.push({ name: "customer-Rating" });
+               console.log(this.value);
+
+          
+        },gotobooking(){
+           this.$router.push({ name: "customer-booking" });
         }
     
   },
@@ -112,7 +126,7 @@ export default {
     
 } */
 .btn.router-link-exact-active {
-  /* background-color:#ced4da !important ;font-size: 18px !important; */
+  /* background-color:#ced4da !important ; */
   border: 4px solid rgb(165, 163, 155);
 
   /* #17a2bb */
@@ -128,19 +142,12 @@ export default {
 .card {
   border-right: solid 5px #17a2bb;
 }
-@media screen and (max-width: 575.98px) {
-
-  .col-sm-8 .card-body .btn{
-  max-width: 75px  !important;
-  margin-top:10px;
- }
- .col-sm-8 .card-body{
-   font-size: 18px !important;
- }
- .head{
-   font-size: 20px !important;
- }
-
-  
+.modal-footer  {
+    margin: 0.5px 10px !important ;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #17a2bb !important ;
+    border: none !important ;
 }
 </style>
