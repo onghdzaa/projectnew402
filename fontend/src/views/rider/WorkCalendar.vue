@@ -14,7 +14,7 @@
           min-width: 130px;
         "
         to="/rider/WorkCalendar"
-        >ตารางงานพนักงาน</router-link
+        >ตารางคิวงาน</router-link
       >
      
     </div>
@@ -74,7 +74,7 @@
                   style="padding-right: 19%; color: #17a2bb"
                 >
                 </i> -->
-                  <button type="submit" @click="BookingButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                  <button type="submit" @click="WorkButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
                   ทำเลย
                 </button>
                 <!-- <i @click="onDelete(sv)" class="fa fa-arrow-circle-right" style="background-color: #ed2939"> ทำเลย</i> -->
@@ -111,7 +111,7 @@ components:{
         };
     },
     methods:{
-    BookingButton(){
+    WorkButton(){
         this.$router.push({name :"rider-WorkStatus"})
     }
     }
@@ -119,5 +119,14 @@ components:{
 </script>
 
 <style>
+@media screen and (max-width: 575.98px){
+.card-header {
+    margin-top: 7% !important;
+}
+.form-group .btn{
+  width: 50% ;
+}
+
+}
 
 </style>

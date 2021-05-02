@@ -51,7 +51,7 @@
         </header>
         <hr />
         <form @submit.prevent="onsubmit()">
-          <div
+          <!-- <div
             class="form-group"
             style="max-width: 350px !important; margin: auto ;padding: 0.5rem 1rem;"
           >
@@ -63,7 +63,7 @@
             :class="{'is-invalid' : errors.has('price_service')}"
             class="form-control" />
             <p class="invalid-feedback">{{errors.first('price_service')}}</p>
-          </div>
+          </div> -->
 
           <div
             class="form-group"
@@ -137,7 +137,7 @@ export default {
   data(){
         return {
             form:{
-                price_service:this.service,
+                // price_service:this.service,
                 price_price:this.price,
                 price_waytobuy:this.waytobuy,
                 price_img:""
@@ -155,7 +155,7 @@ export default {
                 
                 //axios ส่งข้อมูลไปยังแบคเอน
                 const parameters = {
-            "price_service": this.form.price_service,
+            // "price_service": this.form.price_service,
             "price_price": this.form.price_price,
             "price_waytobuy": this.form.price_waytobuy,
             "price_img": this.form.price_img,

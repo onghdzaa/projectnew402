@@ -21,7 +21,7 @@
       <router-link
         class="btn"
         style="
-          background-color: #17a2bb;
+          background-color: #ed2939;
           color: #fff;
           margin-right: 10px;
           width: 15%;
@@ -77,7 +77,7 @@
             <tr v-for="employee in calender" :key="employee.id">
               <td>
                 <div class="img-container">
-                  <img src="/img/imguser.jpg" alt="employee" />
+                  <expandable-image src="/img/imguser.jpg" alt="employee" />
                 </div>
               </td>
                <td>{{employee.time}}</td>

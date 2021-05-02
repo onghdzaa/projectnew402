@@ -14,7 +14,7 @@
           min-width: 130px;
         "
         to="/customer/Booking"
-        >จองบริการล้างรถ</router-link
+        >จองคิวล้างรถ</router-link
       >
       <!-- <router-link
         class="btn"
@@ -136,6 +136,7 @@ export default {
   data() {
     return {
       users: [
+        // {full_name:"yyyyyyy",tell_staff:"0999999999", id_staff:"uuuuu" }
         // { service: "ล้างภายใน", price: "200", waytobuy: "เงินสด / โอนเงิน" },
         // { service: "ล้างภายนอก", price: "200", waytobuy: "เงินสด / โอนเงิน" },
         // {

@@ -14,7 +14,7 @@ import List_Price from './views/admin/List_Price'
 import Edit_Price from './views/admin/Edit_Price'
 
 import Calendar from './views/admin/Calendar'
-// import status from './views/customer/status' BookingButton BookingConfirm BookingHistory ProfileRider EditProfileRider price
+// UnClick import status from './views/customer/status' BookingButton BookingConfirm BookingHistory ProfileRider EditProfileRider price  
 import BookingButton from './views/customer/BookingButton'
 import BookingConfirm from './views/customer/BookingConfirm'
 import BookingHistory from './views/customer/BookingHistory'
@@ -29,8 +29,11 @@ import WorkStatus2 from './views/rider/WorkStatus2'
 import WorkStatus3 from './views/rider/WorkStatus3'
 import WorkStatus4 from './views/rider/WorkStatus4'
 import WorkStatus5 from './views/rider/WorkStatus5'
+import UnClick from './views/rider/UnClick'
 import ProfileRider from './views/rider/ProfileRider'
 import EditProfileRider from './views/rider/EditProfileRider'
+import NoBooking from './views/customer/NoBooking'
+// 
 
 Vue.use(Router)
 
@@ -59,7 +62,8 @@ export default new Router({
      ,
      {path:'/customer/BookingStatus', name:'BookingStatus',component:BookingStatus}
      ,
-     {path:'/customer/Profile', name:'Profile',component:Profile}
+     {path:'/customer/Profile', name:'Profile',component:Profile} ,
+     {path:'/customer/NoBooking', name:'NoBooking',component: NoBooking}
      ,
      {path:'/customer/Edit_Profile', name:'Edit_Profile',component:Edit_Profile}
      ,
@@ -79,6 +83,7 @@ export default new Router({
      {path:'/rider/WorkStatus5', name:'rider-WorkStatus5',component:WorkStatus5},
      {path:'/customer/Rating', name:'customer-Rating',component:Rating},
      {path:'/customer/Price', name:'customer-Price',component:Price}
-     
+     ,
+     {path:'/rider/UnClick', name:'rider-UnClick',component:UnClick},
   ]
 })

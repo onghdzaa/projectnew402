@@ -6,10 +6,11 @@
               <img src="/img/logoo.png" alt="Logo" class="img-logo">
               <!-- การ์ดทั้งใบ -->
       <div class="card">
-          <h1 class="card-header">
+          <h1 class="card-header" style="margin-top:0% !important">
             REGISTER
           </h1>
-          <div class="card-body" >
+          <div class="card-body"  style="margin-left: 15% !important;
+    margin-right: 15% !important;" >
                 <form 
                 @submit.prevent="onsubmit()">
                     <!-- ชื่อผู้ใช้งาน -->
@@ -115,7 +116,7 @@
                      <div class="form-group">
                         <button type="submit" v-on:click="onsubmit"
                         class="btn btn-info" 
-                        style="background-color: #17A2BB; 
+                        style="background-color: #17A2BB;width: 100%; 
                         color : #fff ">ลงทะเบียน
                         </button>
                     </div>
@@ -125,7 +126,7 @@
                         <button type="button" 
                         @click="gotoLogin()" 
                         class="btn btn-secondary" 
-                        style="margin-top: -2%; margin-bottom: 4%">เข้าสู่ระบบ
+                        style="margin-top: -7%; width: 100%; margin-bottom: 4%">เข้าสู่ระบบ
                         </button>
                     </div>
                   
@@ -224,8 +225,8 @@ h1{
  
   .card .card-body{
     /* ขอบซ้ายขวาของการ์ด */
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 10px ;
+    margin-right: 10px ;
 }
 .register {
     /* padding-left: 10px;
@@ -243,6 +244,8 @@ h1{
     margin: auto;
     
     margin-bottom: 10px; */
+}.card-header{
+    margin-top:0% !important;
 }
 
   

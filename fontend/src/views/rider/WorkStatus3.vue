@@ -66,13 +66,7 @@
             <i class="fa fa-pencil-square"> </i> อัพเดทสถานะการให้บริการ (3/4)
           </div>
         </header>
-        <b-progress
-          :value="75"
-          variant="info"
-          striped
-          :animated="animate"
-          class="mt-2"
-        ></b-progress>
+         <b-progress :value="60"  variant="info" animated  class="mt-2"></b-progress>
         <hr />
         <br /><br />
 

@@ -52,7 +52,7 @@
             <tr v-for="sv in service" :key="sv.services">
               <td>
                 <div class="img-container">
-                  <img src="/img/ล้างรถภายใน.png" alt="sv" />
+                  <expandable-image src="/img/ล้างรถภายใน.png" alt="sv" />
                 </div>
               </td>
                

@@ -39,7 +39,7 @@
           </div>
             
              </header>
-               <b-progress :value="100"  variant="info" striped :animated="animate"  class="mt-2"></b-progress>
+               <b-progress :value="80"  variant="info" animated  class="mt-2"></b-progress>
              <hr>
  <br><br>
             

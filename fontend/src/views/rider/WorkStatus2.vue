@@ -64,7 +64,7 @@
                <div>ขั้นตอนที่ 2 : <i class="fa fa-pencil-square" > </i> อัพเดทสถานะการให้บริการ (2/4)</div>
             
              </header>
-             <b-progress :value="50"  variant="info" striped :animated="animate"  class="mt-2"></b-progress>
+             <b-progress :value="40"  variant="info" animated  class="mt-2"></b-progress>
              <hr>
                
  <br><br>
@@ -165,5 +165,8 @@ components:{
   .form .form-group .btn {
     width:100%;
   }
+  .card-header {
+    margin-top: 7% !important;
+}
 }
 </style>

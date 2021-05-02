@@ -28,8 +28,8 @@
           margin-bottom: 15px;
           min-width: 130px;
         "
-        to="/rider/WorkCalendar"
-        >ตารางงานพนักงาน</router-link
+        to="/customer/booking"
+        >ย้อนกลับ</router-link
       >
         <!-- <router-link
         class="btn btn-menu"
@@ -61,24 +61,26 @@
          >
        <br>
              <header>
-               <div> <i class="fa fa-pencil-square" > </i> อัพเดทสถานะการให้บริการ </div>
+               <div> <i class="fa fa-address-card" > </i>  สถานะการจอง </div>
             
              </header>
-             <b-progress :value="100"  variant="info" animated  class="mt-2"></b-progress>
+             <!-- <b-progress :value="50"  variant="info" striped :animated="animate"  class="mt-2"></b-progress> -->
              <hr>
                
  
             
       <div class="row " style="margin-top:0% !important;">
         <div class="col-sm-4 " style="max-width: 100%;margin-top:0 !important;">
-          <img src="/img/start6.png"  alt="user" class="img-booking" style="max-width: 100%;margin-top:0 !important;">
+          <img src="/img/unclick.png"  alt="user" class="img-booking" style="max-width: 100%;margin-top:0 !important;">
       
     
         </div>
         
         <div class="col-sm-8">
             <br><br>
-        <div> <i class="fa fa-check-square" aria-hidden="true"></i>  สถานะงานเสร็จสิ้น </div>
+        <div> <i class="fa fa-window-close" aria-hidden="true"></i>  ไม่มีการจอง </div>
+        <hr>
+        <div> กดปุ่มเริ่มจอง : <button type="submit" @click="startwork()" class="btn btn-info btn-block" style=" display:inline;margin-left:10px;max-width:75px;background-color: #17A2BB;color:#fff;"> จอง</button></div>
         <br>
       
  <br><br><br> 
@@ -96,7 +98,7 @@
 </template>
 
 <script>
-import Layout from "@/components/Layoutrider";
+import Layout from "@/components/Layoutcustomer";
 
 export default {
 components:{
@@ -114,16 +116,8 @@ components:{
     };
   },
     methods:{
-     onsubmit(){  
-               this.$validator.validateAll().then(valid => {
-                //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
-                // console.log(this.form);
-                if(this.form.radio=="")
-                return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
-                
-                  this.$router.push({name :"rider-WorkStatus3"})
-                console.log(this.form);
-           });
+     startwork(){  
+               this.$router.push({name :"customer-booking"})
            
         }
     }
@@ -133,8 +127,12 @@ components:{
 <style>
 
 @media screen and (max-width: 575.98px){
-  .form .form-group .btn {
-    width:100%;
+  .btn  {
+    /* width:180px !important; */
+    
   }
+  .col-sm-8{
+  font-size: 18px !important;
+}
 }
 </style>

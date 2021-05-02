@@ -77,7 +77,8 @@
              
     
     <div></div>
-               <b-progress :value="25"  variant="info" striped :animated="animate"  class="mt-2"></b-progress>
+              
+               <b-progress :value="20"  variant="info" animated  class="mt-2"></b-progress>
                
              <hr>
 
@@ -112,10 +113,16 @@
               </label>
 
             </div>
-            <br><br>
+            
             <!-- ใน div ใส่ map ที่ปักข้อมูลที่อยู่ลูกค้าแล้ว -->
-            <div> +++++ ลีอองใส่ map </div>
-            <br><br>
+            <br>
+            <hr>
+            <br>
+            <div>กดปุ่มเพื่อนำเส้นทาง :  <button type="button" class="btn btn-info btn-block" style="display:inline;border:none; font-size:17px;width:30%;background-color: #E74C3C ;color:#fff;">
+              <i class="fa fa-map-marker" aria-hidden="true"></i> เริ่มนำทาง</button> </div>
+            <br>
+            <hr>
+            <br>
              <div class="form-group">
 <button type="submit" class="btn btn-info btn-block" style=" font-size:17px;width:40%;background-color: #17A2BB;color:#fff;">
                   ต่อไป >
@@ -151,7 +158,7 @@ components:{
       form:{
                
                 radio:"",
-
+               
             }
     };
   },
@@ -178,5 +185,11 @@ components:{
   .form .form-group .btn {
     width:100%;
   }
+  /* .card-header {
+    margin-top: 7% !important;
+} */
+.btn{
+  font-size:18px;
+}
 }
 </style>

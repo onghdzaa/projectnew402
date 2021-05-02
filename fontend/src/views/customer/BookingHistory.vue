@@ -72,7 +72,7 @@
             <tr v-for="sv in bookinghistory" :key="sv.id">
               <td>
                 <div class="img-container">
-                  <img v-bind:src="form.img" alt="bookinghistory" />
+                  <expandable-image v-bind:src="form.img" alt="bookinghistory" />
                 </div>
               </td>
                <td>{{sv.time}}</td>

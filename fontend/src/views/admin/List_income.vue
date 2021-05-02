@@ -102,14 +102,15 @@
               <td>{{user.Name}} </td>
                     <td>{{user.cash}}</td>
                    <td>
+                     <!-- <expandable-image/> -->
                 <div class="img-container" @click="zoomimg()">
-                  <img src="/img/slip.jpg"   alt="user" />
+                  <expandable-image src="/img/slip.jpg"   alt="user" />
                 </div>
                 
               </td>
                <td>
                 <div class="img-container">
-                  <img src="/img/reviewcar.png" alt="user" />
+                  <expandable-image src="/img/reviewcar.png" alt="user" />
                 </div>
                 
               </td>
@@ -142,6 +143,7 @@
 </template>
 
 <script>
+
 import Layout from "@/components/Layout";
 import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
@@ -168,9 +170,9 @@ console.log(users);
 //         })
         
       }
-      ,zoomimg(){
-         this.$router.push({ name: "rider-WorkStatus4" });
-      }
+      // ,zoomimg(){
+      //    this.$router.push({ name: "rider-WorkStatus4" });
+      // }
     }
 };
 </script>

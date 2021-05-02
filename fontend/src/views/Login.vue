@@ -6,10 +6,11 @@
               <img src="/img/logoo.png" alt="Logo" class="img-logo">
               <!-- การ์ดทั้งใบ -->
       <div class="card">
-          <h1 class="card-header">
+          <h1 class="card-header" style="margin-top:0% !important">
             LOGIN
           </h1>
-          <div class="card-body" >
+          <div class="card-body" style="margin-left: 15% !important;
+    margin-right: 15% !important;" >
                 <form 
                 @submit.prevent="onsubmit()">
                     <!-- ชื่อผู้ใช้งาน -->
@@ -41,7 +42,7 @@
                      <div class="form-group">
                         <button type="submit" v-on:click="login"
                         class="btn btn-info" 
-                        style="background-color: #17A2BB; 
+                        style="background-color: #17A2BB; width: 100%;
                         color : #fff ">เข้าสู่ระบบ
                         </button>
                     </div>
@@ -51,7 +52,7 @@
                         <button type="button" 
                         @click="gotoRegister()" 
                         class="btn btn-secondary" 
-                        style="margin-top: -2%; margin-bottom: 4%">ลงทะเบียน
+                        style="margin-top: -27px;width: 100%; margin-bottom: 4%">ลงทะเบียน
                         <br>
                         </button>
                     </div>
@@ -160,8 +161,8 @@ h1{
 }
 .card .card-body{
     /* ขอบซ้ายขวาของการ์ด */
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 15% ;
+    margin-right: 15% ;
 }
 .form-group{
     /* ขนาด,สีของชื่อฟอร์ม */
@@ -182,25 +183,28 @@ h1{
  
  .card  .card-body{
     /* ขอบซ้ายขวาของการ์ด */
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 10px ;
+    margin-right: 10px ;
 }
 .login {
     /* padding-left: 10px;
     padding-right: 10px; */
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
     /* max-width: 600px;
     margin: 3% auto; */
 }
 .img-logo {
     /* โลโก้ */
     width: 100%;
-    margin-top: 0%;
+    /* margin-top: 0% !important; */
     /* display: block;
     margin: auto;
     
     margin-bottom: 10px; */
+}
+.card-header{
+    margin-top:0% !important;
 }
 
   

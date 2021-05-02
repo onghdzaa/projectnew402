@@ -95,7 +95,8 @@
                        
               />
             </div>
-
+    <div class="typeservice" style="margin-bottom:10px;">ประเภทการใช้บริการ </div>
+    
             <div class="form-check">
               <input
                 class="form-check-input"
@@ -158,7 +159,7 @@
 <br>
 <span>Picked: {{ picked }}</span> -->
 <!-- <h1>map</h1> -->
-
+<div class="gpsservice" style="margin-bottom:10px;">ปักหมุดที่อยู่ </div>
 <div>
                 <GmapMap
                   :center="coordinates"
@@ -177,7 +178,7 @@
                        
                         class="btn btn-info" 
                         style="background-color: #17A2BB; max-width:200px;font-size: 17px;
-                        color : #fff ;">ยืนยันการจอง
+                        color : #fff ;">ยืนยัน
                         </button>
                     </div>
             </form>
@@ -432,6 +433,9 @@ currentDateTime() {
 .GmapMap {
 width:220px !important; 
 height:60px !important;
+}
+.form-group{
+  font-size: 18px !important;
 }
   
 }

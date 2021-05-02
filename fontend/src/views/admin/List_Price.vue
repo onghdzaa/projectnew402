@@ -66,7 +66,7 @@
             <tr v-for="sv in listprice" :key="sv.type">
               <td>
                 <div class="img-container">
-                  <img src="/img/ล้างรถภายใน.png" alt="sv" />
+                  <expandable-image src="/img/ล้างรถภายใน.png" alt="sv" />
                 </div>
               </td>
                
