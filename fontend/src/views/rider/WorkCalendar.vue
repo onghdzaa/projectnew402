@@ -54,19 +54,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="employee in employees" :key="employee.id">
+            <tr v-for="lr in listrider" :key="lr.id">
               
                <!-- <td> <div class="img-container">
                   <img src="/img/imguser.jpg" alt="employee" />
                 </div></td> -->
-               <td>{{employee.time}}</td>
-              <td>{{employee.name}} </td>
-                    <td>{{employee.tel}}</td>
-                     <td>{{employee.numcar}}</td>
-                       <td>{{employee.address}}</td>
-                        <td>{{employee.service}}</td>
-                         <td>{{employee.price}}</td>
-                     <td>{{employee.id}}</td>
+               <td>{{lr.time}}</td>
+              <td>{{lr.name_member}} </td>
+                    <td>{{lr.tel_member}}</td>
+                     <td>{{lr.numcar}}</td>
+                       <td>{{lr.address}}</td>
+                        <td>{{lr.type}}</td>
+                         <td>{{lr.price}}</td>
+                     <td>{{lr.id}}</td>
               <td class="text-right">
                 <!-- <i  
                  @click="gotoEdit()"
@@ -74,7 +74,7 @@
                   style="padding-right: 19%; color: #17a2bb"
                 >
                 </i> -->
-                  <button type="submit" @click="WorkButton()" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
+                  <button type="submit" @click="BookingButton(lr.id)" class="btn btn-info btn-block" style=" margin-top: 10px;  background-color: #17A2BB;color:#fff;">
                   ทำเลย
                 </button>
                 <!-- <i @click="onDelete(sv)" class="fa fa-arrow-circle-right" style="background-color: #ed2939"> ทำเลย</i> -->
@@ -97,10 +97,14 @@
 
 <script>
 import Layout from "@/components/Layoutrider";
+import {mapState} from "vuex";
 export default {
 components:{
     Layout
 },
+computed:{
+    ...mapState(["listrider"])
+  },
  data() {
         return {
             employees: [
@@ -110,8 +114,13 @@ components:{
             ]
         };
     },
+     created(){
+this.$store.dispatch("set_listrider",this.$session.get('user'));
+
+     },
     methods:{
-    WorkButton(){
+    BookingButton(idwork){
+       this.$session.set('idwork',idwork);
         this.$router.push({name :"rider-WorkStatus"})
     }
     }

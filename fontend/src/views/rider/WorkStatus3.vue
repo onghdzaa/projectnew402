@@ -175,7 +175,7 @@
 
 <script>
 import Layout from "@/components/Layoutrider";
-
+import axios from "axios";
 export default {
   components: {
     Layout,
@@ -193,8 +193,22 @@ export default {
       this.$validator.validateAll().then((valid) => {
         //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
         // console.log(this.form);
-        if (this.form.radio == "" || this.form.img == "")
+        if (this.form.radio == "" || this.form.img == ""){
           return this.alertify.warning("กรุณากรอกข้อมูลให้ครบ !!");
+        }
+          const parameters = {
+           
+            "id": this.$session.get('idwork'),
+            "status":"ล้างรถเสร็จสิ้น",
+            "imgcar":this.form.img
+           
+            }
+                axios.put('http://localhost:5000/statuschange3',parameters).then(res=>{
+        
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
 
         this.$router.push({ name: "rider-WorkStatus4" });
         console.log(this.form);

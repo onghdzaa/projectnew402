@@ -90,7 +90,7 @@ export default {
                 this.users=res.data.results;
                 if(res.data.result==="successful"&&res.data.type!=1&&res.data.type!=2){
                     this.$router.push({name :"customer-booking"});
-                    console.log(parameters+"sdsddsdsasda");
+                    //console.log(parameters+"sdsddsdsasda");
                       axios.post('http://localhost:5000/logindata',parameters).then(res=>{
                      console.log(res.data[0].name);
                      const parameters={"username":this.form.username,"password":this.form.password}
@@ -105,7 +105,24 @@ export default {
             
                 }else if(res.data.result==="successful"&&res.data.type!=2){
             this.$router.push({name :"equipment-list"});
+                }else if(res.data.result==="error"){
+                  
+              axios.post('http://localhost:5000/loginstaff',parameters).then(ress=>{
+                  if(ress.data.result==="successful"){
+                        this.$session.start();
+                    //console.log(ress.data.id);
+                     this.$session.set('user',ress.data.id);
+                      this.$router.push({name :"rider-WorkCalendar"});
+                  }
+            
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });
+
+             
                 }
+           
                 
             })
             .catch(error =>{ 
