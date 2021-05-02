@@ -49,16 +49,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="sv in service" :key="sv.services">
+            <tr v-for="sv in listprice" :key="sv.id">
               <td>
                 <div class="img-container">
                   <img src="/img/ล้างรถภายใน.png" alt="sv" />
                 </div>
               </td>
                
-              <td>{{sv.services}} </td>
+              <td>{{sv.type}} </td>
                     <td>{{sv.price}}</td>
-                    <td>{{sv.waytobuy}}</td>
+                    <td>{{sv.process}}</td>
                    
               
             
@@ -86,9 +86,12 @@ export default {
 //    computed:{
 //     ...mapState(["listprice"])
 //   },
-//   created(){
-// this.$store.dispatch("set_listprice");
-//   },
+computed:{
+    ...mapState(["listprice"])
+  },
+  created(){
+this.$store.dispatch("set_listprice");
+  },
    data() {
         return {
             service: [

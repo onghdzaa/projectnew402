@@ -64,7 +64,7 @@
                <div>ขั้นตอนที่ 2 : <i class="fa fa-pencil-square" > </i> อัพเดทสถานะการให้บริการ (2/4)</div>
             
              </header>
-             <b-progress :value="50"  variant="info" striped :animated="animate"  class="mt-2"></b-progress>
+             <!-- <b-progress :value="50"  variant="info" striped :animated="animate"  class="mt-2"></b-progress> -->
              <hr>
                
  <br><br>
@@ -126,7 +126,7 @@
 
 <script>
 import Layout from "@/components/Layoutrider";
-
+import axios from "axios";
 export default {
 components:{
     Layout
@@ -147,11 +147,26 @@ components:{
                this.$validator.validateAll().then(valid => {
                 //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
                 // console.log(this.form);
-                if(this.form.radio=="")
-                return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
+                if(this.form.radio==""){return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')}
                 
-                  this.$router.push({name :"rider-WorkStatus3"})
+                 const parameters = {
+           
+            "id": this.$session.get('idwork'),
+            "status":"ถึงจุดนัดหมาย"
+           
+            }
+                axios.put('http://localhost:5000/statuschange',parameters).then(res=>{
+        
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+           
+                this.$router.push({name :"rider-WorkStatus3"})
                 console.log(this.form);
+                 
+          
+                  
            });
            
         }

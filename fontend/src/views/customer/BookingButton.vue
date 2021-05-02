@@ -326,7 +326,7 @@ currentDateTime() {
               
           //     console.error(error);
           //   });
-                 this.$router.push({ name: "BookingConfirm" });
+                 this.$router.push({ name: "BookingConfirm",params: { staff: this.staff , tel: this.tel ,name: this.name,time: this.time,date:this.currentDateTime()}  });
                 //console.log(this.form);
            });
            

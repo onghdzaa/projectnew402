@@ -54,7 +54,7 @@ export default new Router({
      ,
      {path:'/customer/BookingButton', name:'BookingButton',component:BookingButton,props: true}
      ,
-     {path:'/customer/BookingConfirm', name:'BookingConfirm',component:BookingConfirm},
+     {path:'/customer/BookingConfirm', name:'BookingConfirm',component:BookingConfirm,props:true},
      {path:'/customer/BookingHistory', name:'BookingHistory',component:BookingHistory}
      ,
      {path:'/customer/BookingStatus', name:'BookingStatus',component:BookingStatus}

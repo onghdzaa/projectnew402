@@ -77,7 +77,7 @@
              
     
     <div></div>
-               <b-progress :value="25"  variant="info" striped :animated="animate"  class="mt-2"></b-progress>
+               <!-- <b-progress :value="25"  variant="info" striped :animated="animate"  class="mt-2"></b-progress> -->
                
              <hr>
 
@@ -141,11 +141,16 @@
 
 <script>
 import Layout from "@/components/Layoutrider";
-
+import axios from 'axios';
 export default {
 components:{
     Layout
-},data() {
+},
+created(){
+  console.log(this.$session.get('user'))
+console.log(this.$session.get('idwork'))
+},
+data() {
     return {
      
       form:{
@@ -155,15 +160,31 @@ components:{
             }
     };
   },
+ // window.open("https://www.google.com/maps/@13.6638236,100.5235515,17z"); googlemap rider
     methods:{
      onsubmit(){  
                this.$validator.validateAll().then(valid => {
                 //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
                 // console.log(this.form);
-                if(this.form.radio=="")
-                return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
+                if(this.form.radio==""){
+                  
+                  return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
+                }
+                 const parameters = {
+           
+            "id": this.$session.get('idwork'),
+            "status":"ไปจุดนัดหมาย"
+           
+            }
+                axios.put('http://localhost:5000/statuschange',parameters).then(res=>{
+        
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+           
                 
-                  this.$router.push({name :"rider-WorkStatus2"})
+                 this.$router.push({name :"rider-WorkStatus2"})
                 console.log(this.form);
            });
            

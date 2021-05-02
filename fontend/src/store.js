@@ -11,6 +11,7 @@ export default new Vuex.Store({
     listcustomer: [],
     calender: [],
     listprice: [],
+    listrider:[],
   },
   mutations: {
     set_staff: (state, staff) => (state.staff = staff),
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     set_customer: (state, listcustomer) => (state.listcustomer = listcustomer),
     set_calender: (state, calender) => (state.calender = calender),
     set_listprice: (state, listprice) => (state.listprice = listprice),
+    set_listrider: (state, listrider) => (state.listrider = listrider),
   },
   actions: {
     set_staff: ({ commit }) =>
@@ -41,5 +43,9 @@ export default new Vuex.Store({
       axios
         .get("http://localhost:5000/listprice")
         .then((res) => commit("set_listprice", res.data)),
+        set_listrider: ({ commit }, id) =>
+        axios
+          .get("http://localhost:5000/listrider",{ params: { status: "กำลังดำเนินการ" ,id:id}})
+          .then((res) => commit("set_listrider", res.data)),
   },
 });

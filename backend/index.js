@@ -6,13 +6,13 @@ const bodyParser = require("body-parser");
 // const { json } = require("body-parser");
 // const { response } = require("express");
 // const { Connection } = require("pg");
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 const corsOptions = {
   origin: "http://localhost:8080",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 app.use(cors(corsOptions));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
 //var sess;
 //postlogin
@@ -34,6 +34,32 @@ app.post("/logins", async (req, res) => {
           console.log();
           console.log("case1");
           res.send({ result: "successful", type: response.rows[0].type_admin });
+        } else {
+          res.send({ result: "error" });
+        }
+      });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//postlogin rider
+app.post("/loginstaff", async (req, res) => {
+  const user = req.body.username;
+  console.log(req.body.username);
+  const pass = req.body.password;
+  console.log(req.body.password);
+  //res.send({ result: "successful", error: "songsakdi" });
+  try {
+    const Login = await pool
+      .query("SELECT * FROM staff WHERE username = $1 AND password = $2", [
+        user,
+        pass,
+      ])
+      .then((response) => {
+        console.log("testcase" + response.rowCount);
+        if (response.rowCount === 1) {
+         // console.log(response.rows)
+          res.send({ result: "successful", id: response.rows[0].id_staff });
         } else {
           res.send({ result: "error" });
         }
@@ -266,6 +292,7 @@ app.put("/editemployee", async (req, res) => {
     console.error(err.message);
   }
 });
+//price bookingconfirm
 app.post("/munuprice", async (req, res) => {
   try {
     const allLogin = await pool.query(
@@ -275,6 +302,71 @@ app.post("/munuprice", async (req, res) => {
     console.log(allLogin.rows[0].price)
    // res.send({ result: req.body });
      res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//ตารางงาน rider
+app.get("/listrider", async (req, res) => {
+  try {
+     const allLogin = await pool.query("SELECT * FROM reserve WHERE status=$1 AND id_staff = $2 ",[req.query.status,req.query.id]);
+     console.log(allLogin.rowCount);
+     if(allLogin.rowCount>0){
+        res.json(allLogin.rows);
+     }
+    console.log(req.query.id);
+ //  console.log(allLogin.rows)
+   
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+// profile rider
+app.get("/profilerider", async (req, res) => {
+  try {
+   console.log(req)
+   const allLogin = await pool.query("SELECT * FROM staff WHERE id_staff=$1 ",[req.query.id]);
+
+   res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//status change
+app.put("/statuschange", async (req, res) => {
+  try {
+    const allLogin = await pool.query(
+      "UPDATE reserve SET status = $1 WHERE id=$2",
+      [req.body.status,req.body.id]
+    );
+    console.log(req.body);
+     //res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//status change3
+app.put("/statuschange3", async (req, res) => {
+  try {
+    const allLogin = await pool.query(
+      "UPDATE reserve SET status = $1 , imgcar = $2  WHERE id=$3",
+      [req.body.status,req.body.imgcar,req.body.id]
+    );
+    console.log(req.body);
+     //res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//status change4
+app.put("/statuschange4", async (req, res) => {
+  try {
+    const allLogin = await pool.query(
+      "UPDATE reserve SET status = $1 , imgpay = $2, typepay=$3  WHERE id=$4",
+      [req.body.status,req.body.imgpay,req.body.typepay,req.body.id]
+    );
+    console.log(req.body);
+     //res.json(allLogin.rows);
   } catch (err) {
     console.error(err.message);
   }

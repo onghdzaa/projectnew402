@@ -52,12 +52,12 @@
         ><div class="card-body" style="font-size: 19px; color: dimgray">
             <br />
           <div class="head" style="color: green ;font-size: 23px;"> " การจองสำเร็จ "  </div>
-            <div> จองคิวบริการล้างรถวันที่ : 29 / 03 / 64</div>
-            <div> เวลาให้บริการ : 08.00 - 09.00</div>
+            <div> จองคิวบริการล้างรถวันที่ : {{date}}</div>
+            <div> เวลาให้บริการ : {{time}}</div>
             <hr>
-            <div>ชื่อ - นามสกุล : นาย สมสุข ใจดี</div>
-            <div>เบอร์โทรศัพท์ : 0908807104</div>
-            <div>รหัสพนักงาน : 00004</div>
+            <div>ชื่อ - นามสกุล : {{name}}</div>
+            <div>เบอร์โทรศัพท์ : {{tel}}</div>
+            <div>รหัสพนักงาน : {{staff}}</div>
 
             <hr />
             <br>
@@ -77,6 +77,7 @@ import Layout from "@/components/Layoutcustomer";
 import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
 export default {
+   props: [ "staff", "tel" ,"name","time" ,"date"],
   components: { Layout, Pagination },
   data() {
       return {

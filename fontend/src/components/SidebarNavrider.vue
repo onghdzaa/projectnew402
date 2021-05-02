@@ -18,7 +18,7 @@
           ประวัติส่วนตัว
         </router-link> -->
 
-        <router-link to="/rider/WorkStatus" class="sidebar-link">
+        <router-link v-bind:to="link" class="sidebar-link">
           <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
           สถานะงานล่าสุด
         </router-link>
@@ -60,8 +60,28 @@
 </template>
 <script>
 export default {
+  computed: {
+    link() {
+        return "/rider/WorkStatus";
+    }
+},
+  data() {
+    return {
+     
+      form:{
+               
+                path:"/rider/WorkStatus"
+               
+                
+
+            }
+    };
+  },
   // // props:["item"]
   // props:["header" , "navs"]
+  created(){
+
+  }
 };
 </script>
 

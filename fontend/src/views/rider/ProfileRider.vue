@@ -68,6 +68,7 @@
 
 <script>
 import Layout from '@/components/Layoutrider'
+import axios from "axios";
 export default {
 components:{
     Layout
@@ -86,6 +87,23 @@ components:{
 
     };
   },
+  created(){
+    //console.log(this.$session.get('user'))
+     axios.get('http://localhost:5000/profilerider',{params:{id:this.$session.get('user')}}).then(res=>{
+        //console.log(res.data)
+         this.name=res.data[0].full_name;
+        this.tel=res.data[0].tell_staff;
+        // this.email=res.data[0].email;
+        // this.address=res.data[0].address;
+        // this.model=res.data[0].numcar;
+        // this.numcar=res.data[0].numcar;
+        //this.username=res.data[0].user_id;
+
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });
+  }
 }
 </script>
 
