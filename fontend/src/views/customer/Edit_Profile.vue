@@ -205,7 +205,7 @@ export default {
         this.form.model=res.data[0].numcar;
         this.form.numcar=res.data[0].numcar;
         this.form.username=res.data[0].user_id;
-
+        
             })
             .catch(error =>{ 
                 console.error(error);
@@ -229,7 +229,7 @@ export default {
             "img": this.form.img,
             }
                 axios.put('http://localhost:5000/editprofile',parameters).then(res=>{
-        console.log("img")
+       // console.log("img")
 
             })
             .catch(error =>{ 
@@ -240,6 +240,7 @@ export default {
     },
     onChangeFile(input){
       // const imag =""
+      console.log(input);
        this.form.img="";
       if(input.files && input.files.length > 0){
         const file = input.files[0];

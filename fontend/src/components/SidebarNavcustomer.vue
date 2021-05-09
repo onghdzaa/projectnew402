@@ -20,7 +20,7 @@
           ประวัติส่วนตัว
         </router-link> -->
 
-        <router-link to="/customer/BookingStatus" class="sidebar-link">
+        <router-link v-bind:to="form.path" class="sidebar-link">
           <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
           สถานะการจอง
         </router-link>
@@ -65,7 +65,36 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
+   data() {
+    return {
+     
+      form:{
+               
+                path:""
+               
+                
+
+            }
+    };
+  },
+   created(){
+ axios.get('http://localhost:5000/customerstop',{params:{id:this.$session.get('user')}}).then(res=>{
+    //console.log(res.data[0].status)
+    console.log();
+    if(res.data.result=="error"){
+this.form.path="/customer/NoBooking"
+    }else{
+      this.form.path="/customer/BookingStatus"
+     }
+   
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });  
+//this.form.path="/rider/UnClick"
+  }
   // // props:["item"]
   // props:["header" , "navs"]
 };

@@ -81,7 +81,7 @@ export default new Router({
      {path:'/rider/WorkStatus4', name:'rider-WorkStatus4',component:WorkStatus4},
      ,
      {path:'/rider/WorkStatus5', name:'rider-WorkStatus5',component:WorkStatus5},
-     {path:'/customer/Rating', name:'customer-Rating',component:Rating},
+     {path:'/customer/Rating', name:'customer-Rating',component:Rating,props:true},
      {path:'/customer/Price', name:'customer-Price',component:Price}
      ,
      {path:'/rider/UnClick', name:'rider-UnClick',component:UnClick},

@@ -8,7 +8,7 @@
         </h5>
       </header>
       <div class="card-body" style="padding: 1rem 0rem !important">
-        <router-link to="/rider/WorkCalendar" class="sidebar-link">
+        <router-link to="/rider/WorkCalendar"  class="sidebar-link">
           <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
           ตารางคิวงานทั้งหมด
         </router-link>
@@ -18,7 +18,7 @@
           ประวัติส่วนตัว
         </router-link> -->
 
-        <router-link v-bind:to="link" class="sidebar-link">
+        <router-link v-bind:to="form.path" class="sidebar-link">
           <i class="fa fa-chevron-circle-right" style="color: #17a2bb"></i>
           สถานะงานล่าสุด
         </router-link>
@@ -59,10 +59,24 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   computed: {
     link() {
-        return "/rider/WorkStatus";
+      var statuss
+  //        axios.get('http://localhost:5000/riderstop',{params:{id:this.$session.get('user')}}).then(res=>{
+  //   console.log(res.data[0].status)
+  //  statuss=res.data[0].status
+  //           })
+  //           .catch(error =>{ 
+  //               console.error(error);
+  //           });  
+  //           console.log(statuss+"sadasdasdasdas")
+      //       if(res.data[0].status=="ยืนยันการจองคิว"){
+      // return "/rider/UnClick";  }
+      return "/rider/WorkStatus";
+   
+           
     }
 },
   data() {
@@ -70,7 +84,7 @@ export default {
      
       form:{
                
-                path:"/rider/WorkStatus"
+                path:"/rider/UnClick"
                
                 
 
@@ -80,8 +94,37 @@ export default {
   // // props:["item"]
   // props:["header" , "navs"]
   created(){
+   
+ axios.get('http://localhost:5000/riderstop',{params:{id:this.$session.get('user')}}).then(res=>{
+    //console.log(res.data[0].status)
+    console.log(res.data.result)
+   // console.log(res.data);
+    if(res.data.result=="error"){
+this.form.path="/rider/UnClick"
+    }else{
 
-  }
+    this.$session.set('idwork',res.data[0].id);
+    if(res.data[0].status=="ยืนยันการจองคิว"){
+this.form.path="/rider/WorkStatus"
+
+    }else if(res.data[0].status=="ไปจุดนัดหมาย"){
+this.form.path="/rider/WorkStatus2"
+    }else if(res.data[0].status=="ถึงจุดนัดหมาย"){
+this.form.path="/rider/WorkStatus3"
+    }else if(res.data[0].status=="ล้างรถเสร็จสิ้น"){ 
+this.form.path="/rider/WorkStatus4"}
+     }
+   
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });  
+//this.form.path="/rider/UnClick"
+  },methods: {
+     
+    
+  
+  },
 };
 </script>
 

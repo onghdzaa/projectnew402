@@ -73,7 +73,8 @@
         <table class="table " style="font-size: 17px;white-space: nowrap">
           <thead>
             <tr>
-               <th>#</th>
+              
+              <th>#</th>
               <th>รูป</th>
               <th>ชื่อ-นามสกุล</th>
               <th>ที่อยู่</th>
@@ -87,12 +88,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(user,index) in  listcustomer" :key="user.numid">
-               <td>{{index+1}} </td>
-             <td>
-               <div class="help" style="font-size:1px;color:#fff">================</div>
+            <tr v-for="(user,index) in listcustomer" :key="user.numid">
+              
+               <td>{{index+1}}</td>
+               <td>
+                  <div class="help" style="font-size:1px;color:#fff">================</div>
                 <div class="img-container">
-                  <expandable-image src="/img/imguser.jpg" alt="employee" />
+                  <expandable-image src="/img/slip.jpg" alt="user" />
                 </div>
               </td>
               <td>{{user.name}} </td>
@@ -103,11 +105,11 @@
                     <td>{{user.email}}</td>
                     <!-- <td>{{user.model}}</td>
                     <td>{{user.numcar}}</td> -->
-                   <td>
-                <!-- <div class="img-container">
+                   <!-- <td>
+                <div class="img-container">
                   <img src="/img/slip.jpg" alt="user" />
-                </div> -->
-              </td>
+                </div>
+              </td> -->
               
               
             </tr>
@@ -162,6 +164,7 @@ export default {
                 // { Name: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com', role: 'User' },
                 // { Name: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com', role: 'User' }
             ],
+            count:0
         };
     },
     methods:{
@@ -169,13 +172,13 @@ export default {
         this.alertify.confirm('คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?'),() =>{
 console.log(users);
         }; 
+        
 //         this.alertify.confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?" ,() =>{
 // console.log(users);
 //         })
         
-      }
-    },
-    
+      },
+    }
 };
 </script>
 

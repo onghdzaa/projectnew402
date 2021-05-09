@@ -166,7 +166,7 @@
             <br>
             <hr>
             <br>
-            <div>กดปุ่มเพื่อนำเส้นทาง :  <button type="button" class="btn btn-info btn-block" style="display:inline;border:none; font-size:17px;width:30%;background-color: #E74C3C ;color:#fff;">
+            <div>กดปุ่มเพื่อนำเส้นทาง :  <button type="button" @click="gotogps()" class="btn btn-info btn-block" style="display:inline;border:none; font-size:17px;width:30%;background-color: #E74C3C ;color:#fff;">
               <i class="fa fa-map-marker" aria-hidden="true"></i> เริ่มนำทาง</button> </div>
             <br>
             <hr>
@@ -230,11 +230,12 @@ data() {
                   
                   return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
                 }
+                console.log(this.$session.get('idwork'))
                  const parameters = {
            
             "id": this.$session.get('idwork'),
-            "status":"ไปจุดนัดหมาย"
-           
+            
+            "status":"ไปจุดนัดหมาย",
             }
                 axios.put('http://localhost:5000/statuschange',parameters).then(res=>{
         
@@ -245,9 +246,19 @@ data() {
            
                 
                  this.$router.push({name :"rider-WorkStatus2"})
-                console.log(this.form);
+               // console.log(this.form);
            });
            
+        },
+        gotogps(){
+           axios.get('http://localhost:5000/gps',{params:{id:this.$session.get("idwork")}}).then(res=>{
+       // console.log(res.data[0]);
+        window.open("https://www.google.com/maps/place/"+res.data[0].x+","+res.data[0].y);
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+          
         }
     }
 }

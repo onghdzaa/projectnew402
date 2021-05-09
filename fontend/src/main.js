@@ -36,7 +36,7 @@ Vue.use(vueGeolocation);
 Vue.prototype.alertify = alertify;
 Vue.use(map,{
   load:{
-    key:''
+    key:'AIzaSyA4MH4HyamQrZu0cftL-vqy0ymEgS2IXxY'
   }
   //,installComponents: false
 });

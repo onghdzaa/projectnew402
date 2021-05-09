@@ -96,21 +96,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in users" :key="user.id">
+            <tr v-for="user in listtoday" :key="user.id">
               
-               <td>{{user.id}}</td>
-              <td>{{user.Name}} </td>
-                    <td>{{user.cash}}</td>
+               <td>{{user.id_staff}}</td>
+              <td>{{user.name_staff}} </td>
+                    <td>{{user.price}}</td>
                    <td>
                      <!-- <expandable-image/> -->
                 <div class="img-container" @click="zoomimg()">
-                  <expandable-image src="/img/slip.jpg"   alt="user" />
+                  <expandable-image v-bind:src="user.imgcar"   alt="user" />
                 </div>
                 
               </td>
                <td>
                 <div class="img-container">
-                  <expandable-image src="/img/reviewcar.png" alt="user" />
+                  <expandable-image v-bind:src="user.imgpay" alt="user" />
                 </div>
                 
               </td>
@@ -129,7 +129,7 @@
         </table>
         </div>
         <div class="total" style="text:r">
-            <h5 > รวมยอดเงิน : 700 บาท </h5>
+            <h5 > รวมยอดเงิน : {{price}} บาท </h5>
         </div>
         
         <!-- <Pagination/> -->
@@ -146,9 +146,14 @@
 
 import Layout from "@/components/Layout";
 import Pagination from "@/components/Pagination";
+import axios from 'axios';
+import {mapState} from "vuex";
 // import Layout from '../../components/Layout.vue';
 export default {
   components: { Layout,Pagination },
+   computed:{
+    ...mapState(["listtoday"])
+  },
    data() {
         return {
             users: [
@@ -157,7 +162,8 @@ export default {
                 { id: '00003',Name: 'Gina Jabowski', cash: '200' },
                 // { Name: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com', role: 'User' },
                 // { Name: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com', role: 'User' }
-            ]
+            ],
+            price:"700"
         };
     },
     methods:{
@@ -173,6 +179,16 @@ console.log(users);
       // ,zoomimg(){
       //    this.$router.push({ name: "rider-WorkStatus4" });
       // }
+    },
+    created(){
+      this.$store.dispatch("set_listtoday");
+axios.get('http://localhost:5000/calender/today/sum').then(res=>{
+        console.log(res);
+      this.price=res.data[0].sum
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
     }
 };
 </script>

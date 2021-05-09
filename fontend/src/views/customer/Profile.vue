@@ -35,7 +35,7 @@
     <div class="card mb-3" style=" border-right: solid 9px #17A2BB;">
       <div class="row align align-items-center">
         <div class="col-sm-4 " >
-          <img src="/img/customer2.png"  alt="user" class="img-booking" style="max-width: 100%;">
+          <img v-bind:src="img"  alt="user" class="img-booking" style="max-width: 100%;">
         </div>
         <div class="col-sm-8  " style=" margin-left: -40px ;">
           <div class="card-body" style="font-size: 19px;color:dimgray;">
@@ -85,7 +85,7 @@ export default {
     address:'11/22 เชียงราก 1 หอพัก city จังหวัด ปทุมธานี',
     model:'honda',
     numcar:'กข123',
-
+    img:''
 
     };
   },
@@ -100,7 +100,8 @@ export default {
         this.model=res.data[0].numcar;
         this.numcar=res.data[0].numcar;
         this.username=res.data[0].user_id;
-
+        this.img=res.data[0].img;
+        console.log(res);
             })
             .catch(error =>{ 
                 console.error(error);
