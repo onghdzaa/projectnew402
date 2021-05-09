@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="#">
       <img src="/img/logo_nav2.png" alt="" />
     </a>
- 
+ <!-- <b-avatar size="4em">Hello<br>World</b-avatar> -->
 <!-- 
     <div class="topnav-right" style="max-width:300px; " >
  

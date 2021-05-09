@@ -16,7 +16,7 @@
         to="/admin/List_Price"
         >ราคาค่าบริการ</router-link
       >
-      <router-link
+      <!-- <router-link
         class="btn"
         style="
           background-color: #17a2bb;
@@ -30,7 +30,7 @@
         "
         to="/admin/Edit_Price"
         >เพิ่ม/แก้ไขราคา</router-link
-      >
+      > -->
     </div>
     <div class="card">
       <div

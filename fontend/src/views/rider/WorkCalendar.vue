@@ -54,7 +54,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="lr in listrider" :key="lr.id">
+            <tr v-for="lr in employees" :key="lr.id">
               
                <!-- <td> <div class="img-container">
                   <img src="/img/imguser.jpg" alt="employee" />
@@ -108,7 +108,7 @@ computed:{
  data() {
         return {
             employees: [
-                { time:'08.00-09.00', name: 'Frank phy', tel: '0908801234', numcar:'กข123',address:'14/53 มธ.',service:'ล้างภายใน',price:'300',id: '01' },
+                { time:'08.00-09.00', name_member: 'Frank phy', tel_member: '0908801234', numcar:'กข123',address:'14/53 มธ.',type:'ล้างภายใน',price:'300',id: '01' },
                
                 
             ]
