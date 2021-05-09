@@ -179,7 +179,7 @@ components:{
       form:{
                
                 radio:"",
-                img:""
+                img:"/img/noimg.jpg"
                
                 
 
@@ -190,15 +190,18 @@ components:{
      onsubmit(){  
                this.$validator.validateAll().then(valid => {
                 //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
-                // console.log(this.form);
-                if(this.form.radio==""|| this.form.img == ""){return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')}
+                 console.log(this.form.radio);
+                if(this.form.radio=="โอนเงิน"&&this.form.img == ""){
+                  console.log("sadasd");
+return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')
+                }else if(this.form.radio=="เงินสด"&& this.form.img != ""){}
+                else if(this.form.radio==""){return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')}
                 const parameters = {
            
             "id": this.$session.get('idwork'),
             "status":"ชำระเงินเสร็จสิ้น",
             "imgpay":this.form.img,
-            "typepay":this.form.radio
-           
+            "typepay":this.form.radio,
             }
                 axios.put('http://localhost:5000/statuschange4',parameters).then(res=>{
         
@@ -208,6 +211,7 @@ components:{
            });
                 
                this.$router.push({ name: "rider-WorkStatus5" });
+               location.reload();
                 console.log(this.form);
            });
            

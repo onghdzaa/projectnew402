@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-sm-4">
           <img
-            src="/img/employee.png"
+            v-bind:src="img_staff"
             alt="user"
             class="img-booking"
             style="max-width: 100%"
@@ -106,11 +106,11 @@
                             v-model.trim = form.radio
                             :class="{ 'is-invalid' : errors.has(' radio')}" 
                 id="radio"
-                value="ล้างภายใน"
+               v-bind:value="dataprice[0].type"
                 checked
               />
               <label class="form-check-label" >
-                ล้างภายใน 200 บาท
+                {{this.dataprice[0].type}} {{this.dataprice[0].price}} บาท
               </label>
             </div>
 
@@ -123,11 +123,12 @@
                             v-model.trim = form.radio
                             :class="{ 'is-invalid' : errors.has(' radio')}" 
                 id="radio"
-                value="ล้างภายนอก"
+                v-bind:value="dataprice[1].type"
                 checked
               />
               <label class="form-check-label" for="fexampleRadios2">
-                ล้างภายนอก 200 บาท
+               
+                {{dataprice[1].type}} {{dataprice[1].price}} บาท
               </label>
             </div>
 
@@ -140,11 +141,11 @@
                             v-model.trim = form.radio
                             :class="{ 'is-invalid' : errors.has(' radio')}" 
                 id="radio"
-                value="ล้างภายใน+ภายนอก"
+                v-bind:value="dataprice[2].type"
                 checked
               />
               <label class="form-check-label" >
-                ล้างภายใน+ภายนอก 300 บาท
+               {{dataprice[2].type}} {{dataprice[2].price}} บาท
               </label>
             </div>
             <br>
@@ -196,7 +197,7 @@ import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
 export default {
   components: { Layout, Pagination },
-  props: ["staff", "time", "name", "tel"],
+  props: ["staff", "time", "name", "tel","timereserve","img_staff"],
   data() {
     return {
      
@@ -212,14 +213,27 @@ export default {
         lat: 0,
         lng: 0,
       },
+        dataprice:[{type:"",price:"",process:"",id:"",img:""},
+        {type:"",price:"",process:"",id:"",img:""},
+        { type:"",price:"",process:"",id:"",img:""}],
       map: null, 
     };
   },
   created() {
-  //  console.log(this.form.name + "ssssss");
+   //console.log(this.form.name + "ssssss"); 
+   axios
+            .get("http://localhost:5000/listprice")
+            .then((res) => {
+              this.dataprice=res.data
+              console.log(this.dataprice);
+            })
+            .catch((error) => {
+              console.error(error);
+            }); 
     this.$getLocation({}).then((coordinates) => {
       this.coordinates = coordinates;
     });
+      
   },
   mounted() {
     this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
@@ -245,6 +259,7 @@ export default {
 // console.log(form);
 //         }; 
 //     },
+
 currentDateTime() {
       const current = new Date();
       const date =
@@ -263,13 +278,15 @@ currentDateTime() {
                 //  this.alertify.confirm('การจองเสร็จสิ้น').setHeader('<em> แจ้งเตือน ! </em> ')
                 // console.log(this.form);
                 if(this.form.numcar=="" ||this.form.model==""||this.form.radio==""){return this.alertify.warning('กรุณากรอกข้อมูลให้ครบ !!')}
-                
+                console.log(this.form.radio);
+            
                  axios
         .post("http://localhost:5000/profile", {
           fullname: this.$session.get("user"),
         })
         .then((res) => {
            var prices =
+           console.log(this.form.radio);
             axios
             .post("http://localhost:5000/munuprice",{p:this.form.radio
                     })
@@ -283,7 +300,7 @@ currentDateTime() {
           const parameters = {
             "name_member": res.data[0].name,
             "tel_member": res.data[0].tel,
-            "model": res.data[0].model,
+            "model": this.form.model,
             "numcar": this.form.numcar,
             "name_staff": this.name,
             "tel_staff": this.tel,
@@ -295,12 +312,14 @@ currentDateTime() {
             "price": ress.data[0].price,
             "status": "กำลังดำเนินการ",
             "id_member": this.$session.get("user"),
-            "address": res.data[0].address
+            "address": res.data[0].address,
+            "img":this.img_staff
           };
           axios
             .post("http://localhost:5000/booking", parameters)
             .then((res) => {
-             // console.log(res.data);
+              this.$session.set('id2',res.data.id);
+              console.log(res.data.id);
             })
             .catch((error) => {
               console.error(error);
@@ -314,20 +333,32 @@ currentDateTime() {
         .catch((error) => {
           console.error(error);
         });
-          // axios
-          //   .get("http://localhost:5000/bookinghistory/search",{
-          //           params: {
-          //               id: this.$session.get("user")}
-          //           })
-          //   .then((res) => {
+           const parameterss = {
+           
+            "time": this.timereserve,
+            "id":this.staff,
+            }
+         axios.put('http://localhost:5000/time',parameterss).then(res=>{
+        
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+        // 1234 ไม่ใช้ด่านล่าง
+        //   axios
+        //     .get("http://localhost:5000/bookinghistory/search",{
+        //             params: {
+        //                 id: this.$session.get("user")}
+        //             })
+        //     .then((res) => {
                
-          //   //console.log(res)
-          //   })
-          //   .catch((error) => {
+        //     //console.log(res)
+        //     })
+        //     .catch((error) => {
               
-          //     console.error(error);
-          //   });
-                 this.$router.push({ name: "BookingConfirm",params: { staff: this.staff , tel: this.tel ,name: this.name,time: this.time,date:this.currentDateTime()}  });
+        //       console.error(error);
+        //     });
+                this.$router.push({ name: "BookingConfirm",params: { staff: this.staff , tel: this.tel ,name: this.name,time: this.time,date:this.currentDateTime()}  });
                 //console.log(this.form);
            });
            

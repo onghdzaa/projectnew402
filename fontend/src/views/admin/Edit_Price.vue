@@ -29,7 +29,7 @@
           min-width: 130px;
         "
         to="/admin/Edit_Price"
-        >เพิ่ม/แก้ไขราคา</router-link
+        >แก้ไขราคา</router-link
       >
     </div>
     <div class="card">

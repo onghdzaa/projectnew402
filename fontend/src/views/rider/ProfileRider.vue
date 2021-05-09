@@ -16,7 +16,7 @@
         to="/rider/ProfileRider"
         >ประวัติส่วนตัว</router-link
       >
-      <router-link
+      <!-- <router-link
         class="btn"
         style="
           background-color: #17a2bb;
@@ -30,7 +30,7 @@
         "
         to="/rider/EditProfileRider"
         >แก้ไขข้อมูล</router-link
-      >
+      > -->
     </div>
       <div class="card mb-3" style=" border-right: solid 9px #17A2BB;">
       <div class="row align align-items-center">

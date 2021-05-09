@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-sm-4">
           <img
-            src="/img/employee.png"
+            v-bind:src="img"
             alt="user"
             class="img-booking"
             style="max-width: 100%"
@@ -53,10 +53,10 @@
           <div class="card-body" style="font-size: 19px; color: dimgray">
             <br />
             <div class="head" style="color: green; font-size: 23px">
-              สถานะการจอง : " กำลังดำเนินการ "
+              สถานะการจอง : " {{status}} "
             </div>
-            <div>จองคิวบริการล้างรถวันที่ : 29 / 03 / 64</div>
-            <div>เวลาให้บริการ : 08.00 - 09.00</div>
+            <div>จองคิวบริการล้างรถวันที่ : ({{date}})</div>
+            <div>เวลาให้บริการ : {{time}}</div>
     
     
             <hr />
@@ -73,7 +73,7 @@
                   max-width: 95px;
                   background-color: #ed2939;
                   color: #fff;
-                " id="show-btn" @click="$bvModal.show('bv-modal-example')"> <i
+                " id="show-btn" @click="$bvModal.show('bv-modal-example')" :disabled="this.status!='กำลังดำเนินการ'" > <i
                   
                   class="pointer fa fa-trash"
                   style="color: #fff"
@@ -91,7 +91,7 @@
       <br>
       <hr>
     </div>
-    <b-button class="mt-3 " block style="margin:auto;width:50%;border:none; background-color: #ed2939;" @click="onDelete()">ยกเลิกการจอง</b-button>
+    <b-button class="mt-3 " block style="margin:auto;width:50%;border:none; background-color: #ed2939;"  @click="onDelete()">ยกเลิกการจอง</b-button>
   </b-modal>
 
               <!-- <button
@@ -117,9 +117,9 @@
               </button> -->
             </div>
             <hr />
-            <div>ชื่อ - นามสกุล : นาย สมสุข ใจดี</div>
-            <div>เบอร์โทรศัพท์ : 0908807104</div>
-            <div>รหัสพนักงาน : 00004</div>
+            <div>ชื่อ - นามสกุล : {{name}}</div>
+            <div>เบอร์โทรศัพท์ : {{tel}}</div>
+            <div>รหัสพนักงาน : {{id}}</div>
             <!-- <div>รหัสพนักงาน : 00004</div>margin-top:10px; -->
             <div>
               สถานะงานเสร็จสิ้น :
@@ -153,12 +153,39 @@
 <script>
 import Layout from "@/components/Layoutcustomer";
 import Pagination from "@/components/Pagination";
+import axios from 'axios';
+import moment from 'moment'
 // import Layout from '../../components/Layout.vue';
 export default {
   components: { Layout, Pagination },
+  created(){
+ axios.get('http://localhost:5000/customerpresent',{params:{id:this.$session.get("user")}}).then(res=>{
+        console.log(res)
+        this.status=res.data[0].status
+      this.date=moment(String(res.data[0].date)).format('MM-DD-YYYY')
+        this.time=res.data[0].time
+        this.name=res.data[0].name_staff
+        this.tel=res.data[0].tel_staff
+        this.id=res.data[0].id_staff
+        this.id_reserve=res.data[0].id
+        this.img=res.data[0].img
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+          
+        //  console.log(this.$session.get("id2"));
+  },
   data() {
     return {
       status: "succcess",
+      date:"",
+      time:"",
+      name:"",
+      tel:"",
+      id:"",
+      id_reserve:"",
+      img:""
     };
   },
   methods: {
@@ -169,7 +196,7 @@ export default {
       console.log(this.form);
     },
     BookingSuccess() {
-      this.$router.push({ name: "customer-Rating" });
+      this.$router.push({ name: "customer-Rating", params: { id:this.id_reserve,id_staff:this.id,time:this.time,date:this.date,name:this.name,tel:this.tel,img:this.img}  });
     },
     onDelete() {
 //   !! ลีอองใส่เมทอดลบการจองในนี้ !!

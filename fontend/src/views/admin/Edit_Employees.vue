@@ -147,6 +147,9 @@ export default {
             }
         };
     },
+    created(){
+      console.log("sdasdasasdasdsd");
+    },
   components: { Layout },
   methods:{
     onsubmit(){

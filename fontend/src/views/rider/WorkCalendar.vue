@@ -41,7 +41,7 @@
           <thead>
             <tr>
               
-              
+              <!-- <th>รูป</th> -->
               <th>เวลา</th>
               <th>ชื่อ-นามสกุล</th>
               <th>เบอร์โทรศัพท์</th>
@@ -98,6 +98,7 @@
 <script>
 import Layout from "@/components/Layoutrider";
 import {mapState} from "vuex";
+import axios from 'axios';
 export default {
 components:{
     Layout
@@ -115,14 +116,32 @@ computed:{
         };
     },
      created(){
+     
+      // location.reload();
 this.$store.dispatch("set_listrider",this.$session.get('user'));
 
      },
     methods:{
     BookingButton(idwork){
        this.$session.set('idwork',idwork);
-        this.$router.push({name :"rider-WorkStatus"})
-    }
+        
+        const parameters = {
+           
+            "id": idwork,
+            "status":"ยืนยันการจองคิว",
+            "working":1
+            }
+           // console.log("sdasdasdasdsadasd******")
+                axios.put('http://localhost:5000/statuschangebegin',parameters).then(res=>{
+                  //console.log("sdasdasdasdsadasd")
+                  
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+           this.$router.push({name :"rider-WorkStatus"})
+    },
+   
     }
 }
 </script>

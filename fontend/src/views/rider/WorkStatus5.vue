@@ -97,7 +97,7 @@
 
 <script>
 import Layout from "@/components/Layoutrider";
-
+import axios from "axios";
 export default {
 components:{
     Layout
@@ -112,6 +112,20 @@ components:{
 
             }
     };
+  },
+  created(){
+    const parameters = {
+    "id": this.$session.get('idwork'),
+            
+           
+            }
+                axios.put('http://localhost:5000/statuschange5',parameters).then(res=>{
+        
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+              
   },
     methods:{
      onsubmit(){  

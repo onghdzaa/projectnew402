@@ -74,21 +74,28 @@
             <tr>
               
               <th>#</th>
+              <th>รูป</th>
               <th>ชื่อ-นามสกุล</th>
               <th>ที่อยู่</th>
               <th>เบอร์โทรศัพท์</th>
                <th>ยี่ห้อรถ</th>
                 <th>ทะเบียนรถ</th>
-              <th>อีเมลล์</th>
+              <th>อีเมล</th>
                <!-- <th>ยี่ห้อของรถ</th>
                <th>ทะเบียนรถ</th> -->
               
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in listcustomer" :key="user.numid">
+            <tr v-for="(user,index) in listcustomer" :key="user.numid">
               
-               <td>{{user.numid}}</td>
+               <td>{{index+1}}</td>
+               <td>
+                  <div class="help" style="font-size:1px;color:#fff">================</div>
+                <div class="img-container">
+                  <expandable-image src="/img/slip.jpg" alt="user" />
+                </div>
+              </td>
               <td>{{user.name}} </td>
                     <td>{{user.address}}</td>
                     <td>{{user.tel}}</td>
@@ -97,11 +104,11 @@
                     <td>{{user.email}}</td>
                     <!-- <td>{{user.model}}</td>
                     <td>{{user.numcar}}</td> -->
-                   <td>
-                <!-- <div class="img-container">
+                   <!-- <td>
+                <div class="img-container">
                   <img src="/img/slip.jpg" alt="user" />
-                </div> -->
-              </td>
+                </div>
+              </td> -->
               
               
             </tr>
@@ -142,7 +149,8 @@ export default {
                 { no: '3',Name: 'Gina Jabowski', address: '153/41 หอพัก a3 จ.สุพรรณบุรี' ,tel:'0616482107', model:'toyota',numcar:'ฟพ345' ,email:'spc@gmail.com' },
                 // { Name: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com', role: 'User' },
                 // { Name: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com', role: 'User' }
-            ]
+            ],
+            count:0
         };
     },
     methods:{
@@ -150,11 +158,12 @@ export default {
         this.alertify.confirm('คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?'),() =>{
 console.log(users);
         }; 
+        
 //         this.alertify.confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่ ?" ,() =>{
 // console.log(users);
 //         })
         
-      }
+      },
     }
 };
 </script>

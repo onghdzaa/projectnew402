@@ -76,6 +76,7 @@
           <tbody>
             <tr v-for="employee in calender" :key="employee.id">
               <td>
+                 <div class="help" style="font-size:1px;color:#fff">================</div>
                 <div class="img-container">
                   <expandable-image src="/img/imguser.jpg" alt="employee" />
                 </div>

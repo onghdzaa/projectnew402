@@ -42,7 +42,7 @@
                         <label for="">ชื่อ-นามสกุล</label>
                         <input type="text" 
                         name="name"
-                          v-validate="{required: true,regex: /^[A-Za-z]{1,15}$/}"
+                          v-validate="{required: true,regex: /[ก-๙A-Za-z]{1,15}$/}"
                         v-model.trim = form.name
                         :class="{ 'is-invalid' : errors.has('name')}"  
                         class="form-control">
@@ -54,7 +54,7 @@
                         <label for="">เบอร์โทรศัพท์</label>
                         <input type="tel"
                          name="tel"
-                          v-validate="{required: true,regex: /^[0-9]{1,15}$/}"
+                          v-validate="{required: true,regex: /[0-9]{1,15}$/}"
                          v-model.trim = form.tel 
                          :class="{ 'is-invalid' : errors.has('tel')}"  
                          class="form-control">
@@ -114,7 +114,7 @@
                     </div>
                      <!--ปุ่มลงทะเบียน -->
                      <div class="form-group">
-                        <button type="submit" v-on:click="onsubmit"
+                        <button type="submit"
                         class="btn btn-info" 
                         style="background-color: #17A2BB;width: 100%; 
                         color : #fff ">ลงทะเบียน
@@ -152,26 +152,33 @@ export default {
                 email:"",
                 address:"",
                 model:"",
-                numcar:""
+                numcar:"",
+                img:"/img/imguser.jpg"
 
-            }
+            },
+//             attrs: {
+//     src: require('\img\imguser.jpg') 
+//   }
         };
     },
+   
     methods: {
         onsubmit(){
-        //    this.$validator.validateAll().then(valid => {
-        //        console.log(this.form);
-        //    });
+           
+            this.$validator.validateAll().then(valid => {
+                //console.log(this.form);
+           
            console.log("ss");
-            const parameters={"username":this.form.username,"password":this.form.password,"name":this.form.name,
-            "tel":this.form.tel,"email":this.form.email,"address":this.form.address,"model":this.form.model,"numcar":this.form.numcar};
+            const parameters={"username":this.form.username,"password":this.form.password,"name":this.form.name,"tel":this.form.tel,"email":this.form.email,"address":this.form.address,"model":this.form.model,"numcar":this.form.numcar,"img":this.form.img};
             axios.post('http://localhost:5000/registers',parameters).then(res=>{
               //  console.log(res.data.result);
+              this.$router.push({name :"login"})
                 console.log("ss");
                // this.users=res.data.results;
             })
             .catch(error =>{ 
                 console.error(error);
+            }); 
             });
         },
         gotoLogin(){

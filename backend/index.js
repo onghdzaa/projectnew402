@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 // const { json } = require("body-parser");
 // const { response } = require("express");
 // const { Connection } = require("pg");
+
 app.use(express.json({limit: '50mb'}));
 const corsOptions = {
   origin: "http://localhost:8080",
@@ -15,6 +16,17 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
 //var sess;
+// fierbase
+var firebaseConfig = {
+  apiKey: "AIzaSyBdJa3OMeaLfZvL7U_KJIAoFdd8vQBGioA",
+  authDomain: "notitest-b218e.firebaseapp.com",
+  projectId: "notitest-b218e",
+  storageBucket: "notitest-b218e.appspot.com",
+  messagingSenderId: "611972565428",
+  appId: "1:611972565428:web:6cb7b477c1251666678ae1"
+};
+// Initialize Firebase
+//firebase.initializeApp(firebaseConfig);
 //postlogin
 app.post("/logins", async (req, res) => {
   const user = req.body.username;
@@ -77,16 +89,17 @@ app.post("/registers", async (req, res) => {
     const pass = req.body.password;
     //console.log(req.body.tel);
     const Register = await pool.query(
-      "INSERT INTO login VALUES ($1,$2,$3,$4,$5,$6,$7,$8)",
+      "INSERT INTO login (user_id,password,name,tel,email,address,model,numcar,img) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)",
       [
-        user,
-        pass,
+        req.body.username,
+        req.body.password,
         req.body.name,
         req.body.tel,
         req.body.email,
         req.body.address,
         req.body.model,
         req.body.numcar,
+        req.body.img
       ]
     );
     res.send({ result: "successful" });
@@ -151,9 +164,10 @@ app.post("/booking", async (req, res) => {
   // console.log(gpsss+"sss")
   const lat = "POINT(req.body.gps.lat,req.body.gps.lng)";
   const lng = "POINT(req.body.gps.lat,req.body.gps.lng)";
+  console.log(req.body.price+"asdasddas");
   try {
     const Register = await pool.query(
-      "INSERT INTO reserve(name_member,name_staff,tel_member,tel_staff,id_staff,time,gps,type,model,numcar,price,date,status,id_member,address) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)",
+      "INSERT INTO reserve (name_member,name_staff,tel_member,tel_staff,id_staff,time,gps,type,model,numcar,price,date,status,id_member,address,img,working_member) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17) RETURNING id",
       [
         req.body.name_member,
         req.body.name_staff,
@@ -170,9 +184,14 @@ app.post("/booking", async (req, res) => {
         req.body.status,
         req.body.id_member,
         req.body.address,
+        req.body.img,
+        1
       ]
     );
-    res.send({ result: "successful" });
+    res.send({ result: "successful",
+               id:Register.rows[0].id});
+    console.log(req.body.price)
+    //console.log(Register)
   } catch (err) {
     console.log("sss");
     console.error(err.message);
@@ -227,7 +246,7 @@ app.get("/listcustomer", async (req, res) => {
     const allLogin = await pool.query(
       "SELECT * FROM login WHERE type_admin IS NULL"
     );
-    console.log(allLogin.rows);
+   // console.log(allLogin.rows);
     res.json(allLogin.rows.sort(function(a,b){return a.numid-b.numid}));
   } catch (err) {
     console.error(err.message);
@@ -237,7 +256,7 @@ app.get("/listcustomer", async (req, res) => {
 app.get("/calender", async (req, res) => {
   try {
     const allLogin = await pool.query("SELECT * FROM reserve ");
-    console.log(allLogin.rows);
+   // console.log(allLogin.rows);
     res.json(allLogin.rows.sort(function(a,b){return b.id-a.id}));
   } catch (err) {
     console.error(err.message);
@@ -247,7 +266,7 @@ app.get("/calender", async (req, res) => {
 app.get("/listprice", async (req, res) => {
   try {
     const allLogin = await pool.query("SELECT * FROM munuprice");
-    console.log(allLogin.rows);
+    //console.log(allLogin.rows);
     res.json(allLogin.rows.sort(function(a,b){return a.price-b.price}));
   } catch (err) {
     console.error(err.message);
@@ -270,8 +289,8 @@ app.put("/editprofile", async (req, res) => {
 app.put("/editprice", async (req, res) => {
   try {
     const allLogin = await pool.query(
-      "UPDATE munuprice SET type = $1, price = $2 ,process=$3,img= $4 WHERE id=$5",
-      [req.body.price_service, req.body.price_price, req.body.price_waytobuy,req.body.price_img,req.body.index]
+      "UPDATE munuprice SET price = $1 ,process=$2,img= $3 WHERE id=$4",
+      [ req.body.price_price, req.body.price_waytobuy,req.body.price_img,req.body.index]
     );
     console.log(req.body);
     // res.json(allLogin.rows);
@@ -286,7 +305,17 @@ app.put("/editemployee", async (req, res) => {
       "UPDATE staff SET Full_Name = $1, Tell_Staff = $2  WHERE Id_Staff=$3",
       [req.body.name,req.body.tel,req.body.id]
     );
-    console.log(req.body);
+    console.log(allLogin.rowCount);
+    if(allLogin.rowCount==0){
+      console.log(req.body.name);
+
+      const Register = await pool.query(
+        "INSERT INTO staff (full_name,tell_staff)  VALUES ($1,$2) ",
+        [
+          req.body.name,req.body.tel
+        ]
+      );
+    }
      //res.json(allLogin.rows);
   } catch (err) {
     console.error(err.message);
@@ -332,6 +361,19 @@ app.get("/profilerider", async (req, res) => {
     console.error(err.message);
   }
 });
+//status change begin
+app.put("/statuschangebegin", async (req, res) => {
+  try {
+    const allLogin = await pool.query(
+      "UPDATE reserve SET status = $1 ,working = $2 WHERE id=$3",
+      [req.body.status,req.body.working,req.body.id]
+    );
+    console.log(req.body);
+     //res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 //status change
 app.put("/statuschange", async (req, res) => {
   try {
@@ -339,8 +381,19 @@ app.put("/statuschange", async (req, res) => {
       "UPDATE reserve SET status = $1 WHERE id=$2",
       [req.body.status,req.body.id]
     );
-    console.log(req.body);
+    console.log(req);
      //res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//gps
+app.get("/gps", async (req, res) => {
+  try {
+   console.log(req.query.id)
+   const allLogin = await pool.query("SELECT * FROM reserve WHERE id=$1 ",[req.query.id]);
+//console.log(allLogin.rows[0].gps)
+   res.json(allLogin.rows[0].gps);
   } catch (err) {
     console.error(err.message);
   }
@@ -364,6 +417,160 @@ app.put("/statuschange4", async (req, res) => {
     const allLogin = await pool.query(
       "UPDATE reserve SET status = $1 , imgpay = $2, typepay=$3  WHERE id=$4",
       [req.body.status,req.body.imgpay,req.body.typepay,req.body.id]
+    );
+    console.log(req.body);
+     //res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//status change5
+app.put("/statuschange5", async (req, res) => {
+  try {
+    const allLogin = await pool.query(
+      "UPDATE reserve SET   working=0  WHERE id=$1",
+      [req.body.id]
+    );
+    console.log(req.body);
+     //res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//get งานค้าง
+app.get("/riderstop", async (req, res) => {
+  try {
+   const allLogin = await pool.query("SELECT * FROM reserve WHERE id_staff=$1 AND working=1",[req.query.id]);
+console.log(allLogin.rowCount)
+if(allLogin.rowCount>0){
+  res.json(allLogin.rows);
+}else{
+  res.send({ result: "error" })
+}
+   
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//get reserve
+app.get("/customerpresent", async (req, res) => {
+  try {
+   const allLogin = await pool.query("SELECT * FROM reserve WHERE id_member=$1 AND working_member=1",[req.query.id]);
+//console.log(allLogin.rowCount)
+// if(allLogin.rowCount>0){
+ res.json(allLogin.rows);
+// }else{
+//   res.send({ result: "error" })
+// }
+   
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//get งานค้าง custommer
+app.get("/customerstop", async (req, res) => {
+  try {
+   const allLogin = await pool.query("SELECT * FROM reserve WHERE id_member=$1 AND working_member=1",[req.query.id]);
+
+console.log(allLogin.rowCount)
+if(allLogin.rowCount>0){
+  res.json(allLogin.rows);
+}else{
+  res.send({ result: "error" })
+}
+   
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//gettoday calender
+app.get("/calender/today", async (req, res) => {
+  try {
+    const allLogin = await pool.query("SELECT * FROM reserve WHERE DATE(date) = DATE(NOW()) AND(status='ชำระเงินเสร็จสิ้น' OR status='เสร็จสิ้น') ");
+  //  console.log(allLogin.rowCount);
+ //  console.log(allLogin.rows);
+    res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//gettoday calender
+app.get("/calender/today/sum", async (req, res) => {
+  try {
+    const allLogin = await pool.query("SELECT SUM (price) FROM reserve WHERE DATE(date) = DATE(NOW()) AND(status='ชำระเงินเสร็จสิ้น' OR status='เสร็จสิ้น')");
+   // console.log(allLogin.rowCount);
+   // console.log(allLogin.rows);
+   res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+// หยุดการทำงาน ลูกค้า
+app.put("/stop", async (req, res) => {
+  try {
+    //console.log(req.body.id);
+    const allLogin = await pool.query(
+      "UPDATE reserve SET working_member = 0 , status='เสร็จสิ้น' WHERE id=$1",
+      [req.body.id]
+    );
+    console.log(req.body);
+    // res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//คำนวณ
+app.put("/calculate", async (req, res) => {
+  try {
+    const allLogin = await pool.query(
+      "UPDATE staff SET count1 = count1 + 1, total = total+$1  WHERE id_staff=$2",
+      [req.body.value,req.body.id]
+    );
+    console.log(req.body);
+     //res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+app.put("/calculate/average", async (req, res) => {
+  try {
+    const allLogin = await pool.query(
+      "UPDATE staff SET average=total/count1 WHERE id_staff=$1",
+      [req.body.id]
+    );
+    console.log("average");
+     //res.json(allLogin.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+//put time
+app.put("/time", async (req, res) => {
+  try {
+    var time=''
+    if(req.body.time=="time1"){
+      time="UPDATE staff SET time1 = 1  WHERE id_staff=$1";
+    }else if(req.body.time=="time2"){
+      time="UPDATE staff SET time2 = 1  WHERE id_staff=$1";
+    }else if(req.body.time=="time3"){
+      time="UPDATE staff SET time3 = 1  WHERE id_staff=$1";
+    }else if(req.body.time=="time4"){
+      time="UPDATE staff SET time4 = 1  WHERE id_staff=$1";
+    }else if(req.body.time=="time5"){
+      time="UPDATE staff SET time5 = 1  WHERE id_staff=$1";
+    }else if(req.body.time=="time6"){
+      time="UPDATE staff SET time6 = 1  WHERE id_staff=$1";
+    }else if(req.body.time=="time7"){
+      time="UPDATE staff SET time7 = 1  WHERE id_staff=$1";
+    }else if(req.body.time=="time8"){
+      time="UPDATE staff SET time8 = 1  WHERE id_staff=$1";
+    }else if(req.body.time=="time9"){
+      time="UPDATE staff SET time9 = 1  WHERE id_staff=$1";
+    }
+    console.log(time);
+    const allLogin = await pool.query(
+      time,
+      [req.body.id]
     );
     console.log(req.body);
      //res.json(allLogin.rows);

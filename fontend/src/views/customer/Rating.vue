@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-sm-4">
           <img
-            src="/img/employee.png"
+            v-bind:src="img"
             alt="user"
             class="img-booking"
             style="max-width: 100%"
@@ -52,12 +52,12 @@
         ><div class="card-body" style="font-size: 19px; color: dimgray">
             <br />
           <div class="head" style="color: green ;font-size: 23px;"> <i class="fa fa-check-square-o" aria-hidden="true"></i> " ยืนยันการล้างรถเสร็จสิ้น "  </div>
-            <div> จองคิวบริการล้างรถวันที่ : 29 / 03 / 64</div>
-            <div> เวลาให้บริการ : 08.00 - 09.00</div>
+            <div> จองคิวบริการล้างรถวันที่ : {{date}}</div>
+            <div> เวลาให้บริการ : {{time}}</div>
             <hr>
-            <div>ชื่อ - นามสกุล : นาย สมสุข ใจดี</div>
-            <div>เบอร์โทรศัพท์ : 0908807104</div>
-            <div>รหัสพนักงาน : 00004</div>
+            <div>ชื่อ - นามสกุล : {{name}}</div>
+            <div>เบอร์โทรศัพท์ : {{tel}}</div>
+            <div>รหัสพนักงาน : {{id_staff}}</div>
             <div></div>
             <hr />
             
@@ -90,9 +90,15 @@
 <script>
 import Layout from "@/components/Layoutcustomer";
 import Pagination from "@/components/Pagination";
+import axios from "axios";
 // import Layout from '../../components/Layout.vue';
 export default {
+  props:["id","id_staff","time","date","name","tel","img"],
   components: { Layout, Pagination },
+  created(){
+  //console.log(this.id_staff);
+  //console.log(this.value);
+  },
   data() {
       return {
         value: null
@@ -103,9 +109,35 @@ export default {
       this.$router.push({ name: "BookingButton" });
     }, onsubmit(){
            
-               console.log(this.value);
+               const parameters = {
+           
+            
+            
+            "value":this.value,
+            "id":this.id_staff
+           
+            }
+                axios.put('http://localhost:5000/calculate',parameters).then(res=>{
+                  //console.log("sdasd");
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+axios.put('http://localhost:5000/calculate/average',parameters).then(res=>{
+        
+            })
+            .catch(error =>{ 
+                console.error(error);
+           });
+//console.log(this.id);
+          axios.put('http://localhost:5000/stop',{id:this.id}).then(res=>{
+   // console.log(this.$session.get('user'))
+   
+            })
+            .catch(error =>{ 
+                console.error(error);
+            });  
 
-          
         },gotobooking(){
            this.$router.push({ name: "customer-booking" });
         }
