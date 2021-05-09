@@ -94,27 +94,7 @@
     <b-button class="mt-3 " block style="margin:auto;width:50%;border:none; background-color: #ed2939;" @click="onDelete()">ยกเลิกการจอง</b-button>
   </b-modal>
 
-              <!-- <button
-                type="submit"
-                @click="onDelete()"
-                class="btn btn-info btn-block"
-                style="
-                  border: none;
-                  display: inline;
-                  margin-left: 10px;
-                  max-width: 95px;
-                  background-color: #ed2939;
-                  color: #fff;
-                "
-              >
-                <i
-                  
-                  class="pointer fa fa-trash"
-                  style="color: #fff"
-                >
-                </i>
-                ยกเลิก
-              </button> -->
+             
             </div>
             <hr />
             <div>ชื่อ - นามสกุล : นาย สมสุข ใจดี</div>
@@ -137,6 +117,7 @@
               >
                 ยืนยัน
               </button>
+              
             </div>
 
             <hr />

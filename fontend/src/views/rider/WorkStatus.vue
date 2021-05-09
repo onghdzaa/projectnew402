@@ -74,14 +74,61 @@
                <div>ขั้นตอนที่ 1 : <i class="fa fa-pencil-square" > </i> อัพเดทสถานะการให้บริการ (1/4)</div>
             
              </header>
-             
+             <!-- <th>เวลา</th>
+              <th>ชื่อ-นามสกุล</th>
+              <th>เบอร์โทรศัพท์</th>
+              <th>ทะเบียนรถ</th>
+              <th>ที่อยู่</th>
+               <th>ประเภท</th>
+                 <th>ราคา</th>
+              <th>รหัส</th> -->
     
     <div></div>
               
                <b-progress :value="20"  variant="info" animated  class="mt-2"></b-progress>
-               
-             <hr>
+               <br>
+             <!-- <hr> -->
+             <div class="table-responsive">
+        <table class="table" style="font-size: 16px;white-space: nowrap">
+          <thead>
+            <tr>
+              
+              
+              <th>เวลา</th>
+              <th>ชื่อ-นามสกุล</th>
+              <th>เบอร์โทรศัพท์</th>
+              <th>ทะเบียนรถ</th>
+            
+               <th>ประเภท</th>
+                 <th>ราคา</th>
+              <th>รหัส</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="lr in employees" :key="lr.id">
+              
+               <!-- <td> <div class="img-container">
+                  <img src="/img/imguser.jpg" alt="employee" />
+                </div></td> -->
+               <td>{{lr.time}}</td>
+              <td>{{lr.name_member}} </td>
+                    <td>{{lr.tel_member}}</td>
+                     <td>{{lr.numcar}}</td>
+                      
+                        <td>{{lr.type}}</td>
+                         <td>{{lr.price}}</td>
+                     <td>{{lr.id}}</td>
+            
+              
+            </tr>
+             
+          </tbody>
+        </table>
+         </div>
+    
 
+<hr>
  <br><br>
             
       <div class="row " style="margin-top:0% !important;">
@@ -92,6 +139,7 @@
         </div>
         
         <div class="col-sm-8">
+          
         <div>   <i class=" fa fa-road" aria-hidden="true"></i> พนักงานออกเดินทางไปยังที่อยู่ลูกค้า</div>
         <br>
         <form  @submit.prevent="onsubmit()">
@@ -159,7 +207,12 @@ console.log(this.$session.get('idwork'))
 },
 data() {
     return {
-     
+       employees: [
+                { time:'08.00-09.00', name_member: 'Frank phy', tel_member: '0908801234', numcar:'กข123',address:'14/53 มธ.',service:'ล้างภายใน',price:'300',id: '01' },
+               
+                
+            ]
+     ,
       form:{
                
                 radio:"",

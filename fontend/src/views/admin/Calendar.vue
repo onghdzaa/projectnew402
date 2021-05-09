@@ -59,8 +59,8 @@
         <div class="table-responsive">
    <table class="table" style="font-size: 17px;white-space: nowrap">
           <thead>
-            <tr>
-              <th>รูป</th>
+            <tr >
+              <th  >รูป</th>
               <th>เวลา</th>
               <th>ชื่อ-นามสกุล</th>
               <th>เบอร์ติดต่อ</th>
@@ -74,11 +74,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="employee in calender" :key="employee.id">
-              <td>
-                <div class="img-container">
+            <tr v-for="employee in employees" :key="employee.id">
+              <td >
+                 <div class="help" style="font-size:1px;color:#fff">================</div>
+                <div class="img-container" >
                   <expandable-image src="/img/imguser.jpg" alt="employee" />
                 </div>
+                <!-- <div class="help" style="font-size:1px;color:#fff">================</div> -->
               </td>
                <td>{{employee.time}}</td>
               <td>{{employee.name_member}} </td>

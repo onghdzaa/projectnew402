@@ -61,7 +61,7 @@
             <div></div>
             <hr />
             
-            <div class="head" style="color: green ;font-size: 23px;"> <i class="fa fa-star-half-o" aria-hidden="true"></i> " ให้คะแนนพนักงาน "  </div>
+            <div class="head" style="color: green ;font-size: 23px;margin-bottom:15px"> <i class="fa fa-star-half-o" aria-hidden="true"></i> " ให้คะแนนพนักงาน "  </div>
             <div>
      
     <b-form-rating v-model="value"></b-form-rating>
@@ -69,11 +69,43 @@
   </div>
     <!-- <div><button type="submit" @click="BookingSuccess()" class="btn btn-info btn-block" style=" font-size: 19px;display:inline;max-width:95px;background-color: #17A2BB;color:#fff;"> ยืนยัน</button></div> -->
     <div>
+  <div>
+              ให้คะแนนเสร็จสิ้น :
+                
+  <b-button   style="
+                  border: none;
+                  display: inline;
+                  margin-left: 10px;
+                  max-width: 95px;
+                  background-color: #17A2BB;
+                  color: #fff;
+                " id="show-btn" @click="$bvModal.show('bv-modal-example')"> <i
+                  
+                  class="pointer "
+                  style="color: #fff"
+                >
+                </i>
+                ยืนยัน</b-button>
 
-  <b-button v-b-modal.modalPopover type="submit" @click="onsubmit()" style="border:none; font-size: 19px;display:inline;max-width:95px;background-color: #17A2BB;color:#fff;"> ยืนยัน</b-button>
+  <b-modal id="bv-modal-example" hide-footer>
+    <template #modal-title>
+      สำเร็จ !
+    </template>
+    <br>
+    <div class="d-block text-center" >
+      <h5>ให้คะแนนเสร็จสิ้น <i class="fa fa-check" aria-hidden="true"></i> </h5>
+      <br>
+      <hr>
+    </div>
+    <b-button class="mt-3 " block style="margin:auto;width:50%;border:none; background-color: #17A2BB;" @click="onSuccess()"> เสร็จสิ้น</b-button>
+  </b-modal>
+
+              
+            </div>
+  <!-- <b-button v-b-modal.modalPopover type="submit" @click="onsubmit()" style="border:none; font-size: 19px;display:inline;max-width:95px;background-color: #17A2BB;color:#fff;"> ยืนยัน</b-button>
 
  
-  <b-modal  id="modalPopover" title="เสร็จสิ้น" ok-only @click="gotobooking()" >ให้คะแนนเสร็จสิ้น !</b-modal>
+  <b-modal  id="modalPopover" title="เสร็จสิ้น" ok-only @click="gotobooking()" >ให้คะแนนเสร็จสิ้น !</b-modal> -->
 </div>
 
 
@@ -106,9 +138,10 @@ export default {
                console.log(this.value);
 
           
-        },gotobooking(){
-           this.$router.push({ name: "customer-booking" });
-        }
+        },onSuccess() {
+
+this.$router.push({ name: "customer-booking" });
+    }
     
   },
 };

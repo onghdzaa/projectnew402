@@ -68,27 +68,33 @@
             แสดงข้อมูลลูกค้า
         </header>
         
-        <div class="table-responsive">
-        <table class="table" style="font-size: 17px;white-space: nowrap">
+<!-- <div id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0"> -->
+        <div  class="table-responsive " >
+        <table class="table " style="font-size: 17px;white-space: nowrap">
           <thead>
             <tr>
-              
-              <th>#</th>
+               <th>#</th>
+              <th>รูป</th>
               <th>ชื่อ-นามสกุล</th>
               <th>ที่อยู่</th>
               <th>เบอร์โทรศัพท์</th>
                <th>ยี่ห้อรถ</th>
                 <th>ทะเบียนรถ</th>
-              <th>อีเมลล์</th>
+              <th>อีเมล</th>
                <!-- <th>ยี่ห้อของรถ</th>
                <th>ทะเบียนรถ</th> -->
               
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in listcustomer" :key="user.numid">
-              
-               <td>{{user.numid}}</td>
+            <tr v-for="(user,index) in  listcustomer" :key="user.numid">
+               <td>{{index+1}} </td>
+             <td>
+               <div class="help" style="font-size:1px;color:#fff">================</div>
+                <div class="img-container">
+                  <expandable-image src="/img/imguser.jpg" alt="employee" />
+                </div>
+              </td>
               <td>{{user.name}} </td>
                     <td>{{user.address}}</td>
                     <td>{{user.tel}}</td>
@@ -109,6 +115,15 @@
           </tbody>
         </table>
         </div>
+        <template>
+  
+</template>
+
+        <!-- <div class="mt-3">
+      <h6>Default Pills</h6>
+      <b-pagination v-model="currentPage" pills :total-rows="rows"></b-pagination>
+    </div> -->
+<!-- </div> -->
         
         <!-- <Pagination/> -->
         <!-- <header>
@@ -126,6 +141,7 @@ import Pagination from "@/components/Pagination";
 // import Layout from '../../components/Layout.vue';
 import {mapState} from "vuex";
 export default {
+  
   components: { Layout,Pagination },
   computed:{
     ...mapState(["listcustomer"]),
@@ -137,12 +153,15 @@ export default {
    data() {
         return {
             users: [
-                { no: '1', Name: 'Frank Murphy', address: '153/41 หอพัก a3 จ.กรุงเทพ' ,tel:'0615103308',model:'toyota',numcar:'ฟพ345', email:'kny@gmail.com'},
-                { no: '2',Name: 'Vic Reynolds', address: '83/2 หอพัก c3 จ.ปทุมธานี' ,tel:'0908807104',model:'toyota',numcar:'ฟพ345',email:'stp@gmail.com' },
-                { no: '3',Name: 'Gina Jabowski', address: '153/41 หอพัก a3 จ.สุพรรณบุรี' ,tel:'0616482107', model:'toyota',numcar:'ฟพ345' ,email:'spc@gmail.com' },
+                { name: 'Frank Murphy', address: '153/41 หอพัก a3 จ.กรุงเทพ' ,tel:'0615103308',model:'toyota',numcar:'ฟพ345', email:'kny@gmail.com'},
+                { name: 'Vic Reynolds', address: '83/2 หอพัก c3 จ.ปทุมธานี' ,tel:'0908807104',model:'toyota',numcar:'ฟพ345',email:'stp@gmail.com' },
+                { name: 'Gina Jabowski', address: '153/41 หอพัก a3 จ.สุพรรณบุรี' ,tel:'0616482107', model:'toyota',numcar:'ฟพ345' ,email:'spc@gmail.com' },
+                 { name: 'Frank Murphy', address: '153/41 หอพัก a3 จ.กรุงเทพ' ,tel:'0615103308',model:'toyota',numcar:'ฟพ345', email:'kny@gmail.com'},
+                { name: 'Vic Reynolds', address: '83/2 หอพัก c3 จ.ปทุมธานี' ,tel:'0908807104',model:'toyota',numcar:'ฟพ345',email:'stp@gmail.com' },
+                { name: 'Gina Jabowski', address: '153/41 หอพัก a3 จ.สุพรรณบุรี' ,tel:'0616482107', model:'toyota',numcar:'ฟพ345' ,email:'spc@gmail.com' }
                 // { Name: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com', role: 'User' },
                 // { Name: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com', role: 'User' }
-            ]
+            ],
         };
     },
     methods:{
@@ -155,7 +174,8 @@ console.log(users);
 //         })
         
       }
-    }
+    },
+    
 };
 </script>
 

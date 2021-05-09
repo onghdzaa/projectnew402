@@ -34,7 +34,7 @@
        <!-- <div>สวัสดี คุณ ณัทชวัช อาวุธโสภา</div> -->
     </div>
    
-    <div class="card mb-3" v-for="sv in staff" :key="sv.ID_Staff" style=" border-right: solid 9px #17A2BB;">
+    <div class="card mb-3" v-for="sv in users" :key="sv.ID_Staff" style=" border-right: solid 9px #17A2BB;">
       <div class="row  align-items-center">
         <div class="col-sm-4 ">
           <img src="/img/employee.png"  alt="user" class="img-booking" style="max-width: 100%;">
@@ -44,8 +44,9 @@
             <div>ชื่อ - นามสกุล : {{sv.full_name}}</div>
             <div>เบอร์โทรศัพท์ : {{sv.tell_staff}}</div>
             <div>รหัสพนักงาน  : {{sv.id_staff}}</div>
-            <!-- เพิ่ม ช่องใส่คะแนนแต่ละคน -->
+            <!-- เพิ่ม ช่องใส่คะแนนแต่ละคน <i class="fa fa-user" aria-hidden="true"></i>-->
             <div>คะแนน : 4.8 / 5 <i class="fa fa-star-half-o" aria-hidden="true"></i></div> 
+             <div>จำนวนคนให้คะแนน :  20 คน  <i class="fa fa-user" aria-hidden="true"></i></div> 
             
             <hr>
             <div>เลือกช่วงเวลาที่ต้องการจอง</div>
@@ -136,10 +137,11 @@ export default {
   data() {
     return {
       users: [
-        // {full_name:"yyyyyyy",tell_staff:"0999999999", id_staff:"uuuuu" }
+        {full_name:"สมใจ ยินดี",tell_staff:"0918717426", id_staff:"001" },
+        {full_name:"สิริ สีเขียว",tell_staff:"0918717426", id_staff:"002" }
         // { service: "ล้างภายใน", price: "200", waytobuy: "เงินสด / โอนเงิน" },
         // { service: "ล้างภายนอก", price: "200", waytobuy: "เงินสด / โอนเงิน" },
-        // {
+        // // {
         //   service: "ล้างภายใน + ภายนอก",
         //   price: "300",
         //   waytobuy: "เงินสด / โอนเงิน",
